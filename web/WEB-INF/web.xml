@@ -22,44 +22,63 @@
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
     <security-constraint>
-        <display-name>AdminConstraint</display-name>
+        <display-name>Admin Pages</display-name>
         <web-resource-collection>
-            <web-resource-name>Admin</web-resource-name>
-            <description>Admin</description>
-            <url-pattern>/secureAdmin/*</url-pattern>
+            <web-resource-name>Protected Admin Area</web-resource-name>
+            <description></description>
+            <url-pattern>/faces/admin/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>
         </web-resource-collection>
         <auth-constraint>
             <description/>
-            <role-name>AdminRole</role-name>
+            <role-name>admin</role-name>
         </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
     </security-constraint>
     <security-constraint>
-        <display-name>UserConstraint</display-name>
+        <display-name>All Access</display-name>
         <web-resource-collection>
-            <web-resource-name>User</web-resource-name>
-            <description>User</description>
-            <url-pattern>/secureUser/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
+            <web-resource-name>None Protected User Area</web-resource-name>
             <description/>
-            <role-name>UserRole</role-name>
-            <role-name>AdminRole</role-name>
-        </auth-constraint>
+            <url-pattern>/faces/users/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
     </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
-        <realm-name>file</realm-name>
+        <realm-name>JDBCRealm</realm-name>
         <form-login-config>
-            <form-login-page>/index.xhtml</form-login-page>
-            <form-error-page>/loginError.html</form-error-page>
+            <form-login-page>/faces/login.xhtml</form-login-page>
+            <form-error-page>/faces/loginerror.xhtml</form-error-page>
         </form-login-config>
     </login-config>
-    <security-role>
+<!--    <security-role>
         <description>Users added to this role have access to the secureAdmin directory of the server.</description>
         <role-name>AdminRole</role-name>
     </security-role>
     <security-role>
         <description>Users added to this role have access to the secureUser directory of the server.Users added to this role have access to the secureUser directory of the server.</description>
         <role-name>UserRole</role-name>
-    </security-role>
+    </security-role>-->
+    <error-page>
+        <error-code>403</error-code>
+        <location>/faces/403.xhtml</location>
+    </error-page>
 </web-app>

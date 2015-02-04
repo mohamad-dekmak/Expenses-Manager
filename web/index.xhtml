@@ -7,12 +7,15 @@
         <title>Home Page</title>
     </h:head>
     <h:body>
-        Home Page
-        <br />
-        <br />
-        Request a secure Admin page <h:link outcome="secureAdmin/pageA.html" value="here!" />
-        <br />
-        Request a secure User page <h:link outcome="secureUser/pageU.html" value="here!" />
+        <center>    
+            <p:panel header="Expenses Manager">
+                <h4>Select where you want to go:</h4>
+                Request a secure Admin page <h:link outcome="admin/index" value="here!" />
+                <br />
+                <br />
+                Request a secure User page <h:link outcome="users/index" value="here!" />
+            </p:panel>
+        </center>
     </h:body>
 </html>
 
