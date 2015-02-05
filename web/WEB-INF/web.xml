@@ -25,12 +25,13 @@
         <display-name>Admin Pages</display-name>
         <web-resource-collection>
             <web-resource-name>Protected Admin Area</web-resource-name>
-            <description></description>
+            <description/>
             <url-pattern>/faces/admin/*</url-pattern>
+            <url-pattern>/faces/users/*</url-pattern>
             <http-method>GET</http-method>
-            <http-method>POST</http-method>
-            <http-method>HEAD</http-method>
             <http-method>PUT</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>POST</http-method>
             <http-method>OPTIONS</http-method>
             <http-method>TRACE</http-method>
             <http-method>DELETE</http-method>
@@ -48,11 +49,11 @@
         <web-resource-collection>
             <web-resource-name>None Protected User Area</web-resource-name>
             <description/>
-            <url-pattern>/faces/users/*</url-pattern>
+            <url-pattern>/faces/public/*</url-pattern>
             <http-method>GET</http-method>
-            <http-method>POST</http-method>
-            <http-method>HEAD</http-method>
             <http-method>PUT</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>POST</http-method>
             <http-method>OPTIONS</http-method>
             <http-method>TRACE</http-method>
             <http-method>DELETE</http-method>
@@ -69,7 +70,7 @@
             <form-error-page>/faces/loginerror.xhtml</form-error-page>
         </form-login-config>
     </login-config>
-<!--    <security-role>
+    <!--    <security-role>
         <description>Users added to this role have access to the secureAdmin directory of the server.</description>
         <role-name>AdminRole</role-name>
     </security-role>

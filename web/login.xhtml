@@ -8,6 +8,9 @@
     </h:head>
     <h:body>
         <center>
+            <h:link outcome="/index" value="Back to Homepage" style="float: left;" />
+            <br />
+            <br />
             <p:panel header="Login From">
                 <form method="POST" action="j_security_check">
                     Username: <input type="text" name="j_username" />
@@ -17,8 +20,6 @@
                     <br />
                     <input type="submit" value="Login" />
                     <input type="reset" value="Reset" />
-                    <br />
-                    <h:link outcome="/index" value="Back to Homepage" style="float: left;" />
                     <br />
                 </form>
             </p:panel>

@@ -7,12 +7,13 @@
         <title>Error Logging In</title>
     </h:head>
     <h:body>
-        <center>
+        <center> 
+            <h:link outcome="/index" value="Back to Homepage" style="float: left;" />
+            <br />
+            <br />
             <p:panel header="Login Error">
                 Sorry, you made an Error. Please try again: <a href="#{facesContext.externalContext.requestContextPath}/faces/admin/index.xhtml" >Login</a>
-                <br />    
-                <h:link outcome="/index" value="Back to Homepage" style="float: left;" />
-                <br />
+                <br />   
             </p:panel>
         </center>
     </h:body>
