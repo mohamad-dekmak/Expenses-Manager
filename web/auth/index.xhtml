@@ -14,13 +14,15 @@
                 <h:link outcome="/logout.jsp" value="Logout" style="float: right;" />
                 <br />
                 <br />
-                <p:panel header="Hello Admin" style="height: 300px;">
-                    <h4>This is Admin Secure Area!</h4>
+                <p:panel header="Hello User" style="height: 300px;">
+                    <h4>This is Auth Secure Area!</h4>
                     <p:panel header="Manage Users" style="width: 48%; float: left;">
                         <h:link outcome="/users/List" value="Show All Users Items" />
                     </p:panel>
                     <p:panel header="Expenses" style="width: 50%; float: right;">
-                        <!--<h:link outcome="/admin/expenses/index" value="Expenses" />-->
+                        <h:link outcome="/expenses/index" value="Manage Expenses" />
+                        <br />
+                        <h:link outcome="/expensesCategories/index" value="Expenses Categories" />
                     </p:panel>
                 </p:panel>
             </center>

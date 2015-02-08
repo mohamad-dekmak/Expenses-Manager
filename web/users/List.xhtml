@@ -15,11 +15,11 @@
 
         <ui:define name="body">
             <h:form id="UsersListForm">
-                <p:panel header="#{bundle.ListUsersTitle}">
+                <p:panel header="#{bundle.ListUsersTitle} Users">
                     <p:dataTable id="datalist" value="#{usersController.items}" var="item"
                                  selectionMode="single" selection="#{usersController.selected}"
                                  paginator="true"
-                                 rowKey="#{item.userid}"
+                                 rowKey="#{item.username}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
@@ -29,15 +29,27 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_userid}"/>
+                                <h:outputText value="#{bundle.ListUsersTitle_username}"/>
                             </f:facet>
-                            <h:outputText value="#{item.userid}"/>
+                            <h:outputText value="#{item.username}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUsersTitle_password}"/>
                             </f:facet>
                             <h:outputText value="#{item.password}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_groupName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.groupName}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{usersController.prepareCreate}" update=":UsersCreateForm" oncomplete="PF('UsersCreateDialog').show()"/>
