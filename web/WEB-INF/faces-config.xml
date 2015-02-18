@@ -8,5 +8,33 @@
             <base-name>/Bundle</base-name>
             <var>bundle</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/BundleAccouts</base-name>
+            <var>bundleAccouts</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/BundleExpensesCategories</base-name>
+            <var>bundleExpensesCategories</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/BundleVouchers</base-name>
+            <var>bundleVouchers</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/BundleExpenses</base-name>
+            <var>bundleExpenses</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/BundleExpense</base-name>
+            <var>bundleExpense</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/BundleUsers</base-name>
+            <var>bundleUsers</var>
+        </resource-bundle>
     </application>
 </faces-config>

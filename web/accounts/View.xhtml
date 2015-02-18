@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AccountsViewDlg" widgetVar="AccountsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleAccouts.ViewAccountsTitle}">
+            <h:form id="AccountsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{accountsController.selected != null}">
+                        <h:outputText value="#{bundleAccouts.ViewAccountsLabel_name}"/>
+                        <h:outputText value="#{accountsController.selected.name}" title="#{bundleAccouts.ViewAccountsTitle_name}"/>
+                        <h:outputText value="#{bundleAccouts.ViewAccountsLabel_description}"/>
+                        <h:outputText value="#{accountsController.selected.description}" title="#{bundleAccouts.ViewAccountsTitle_description}"/>
+                        <h:outputText value="#{bundleAccouts.ViewAccountsLabel_currencyId}"/>
+                        <h:outputText value="#{accountsController.selected.currencyId}" title="#{bundleAccouts.ViewAccountsTitle_currencyId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundleAccouts.Close}" onclick="AccountsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

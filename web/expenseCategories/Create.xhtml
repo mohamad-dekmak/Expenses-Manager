@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ExpenseCategoriesCreateDlg" widgetVar="ExpenseCategoriesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleExpensesCategories.CreateExpenseCategoriesTitle}">
+            <h:form id="ExpenseCategoriesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{expenseCategoriesController.selected != null}">
+                        <p:outputLabel value="#{bundleExpensesCategories.CreateExpenseCategoriesLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{expenseCategoriesController.selected.name}" title="#{bundleExpensesCategories.CreateExpenseCategoriesTitle_name}" required="true" requiredMessage="#{bundleExpensesCategories.CreateExpenseCategoriesRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundleExpensesCategories.CreateExpenseCategoriesLabel_accountId}" for="accountId" />
+                        <p:selectOneMenu id="accountId" value="#{expenseCategoriesController.selected.accountId}" >
+                            <f:selectItems value="#{accountsController.itemsAvailableSelectOne}"
+                                           var="accountIdItem"
+                                           itemValue="#{accountIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleExpensesCategories.CreateExpenseCategoriesLabel_expenseCategoryId}" for="expenseCategoryId" />
+                        <p:selectOneMenu id="expenseCategoryId" value="#{expenseCategoriesController.selected.expenseCategoryId}" >
+                            <f:selectItems value="#{expenseCategoriesController.itemsAvailableSelectOne}"
+                                           var="expenseCategoryIdItem"
+                                           itemValue="#{expenseCategoryIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{expenseCategoriesController.create}" value="#{bundleExpensesCategories.Save}" update="display,:ExpenseCategoriesListForm:datalist,:growl" oncomplete="handleSubmit(args,'ExpenseCategoriesCreateDialog');"/>
+                    <p:commandButton value="#{bundleExpensesCategories.Cancel}" onclick="ExpenseCategoriesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

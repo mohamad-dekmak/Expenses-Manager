@@ -10,52 +10,51 @@
 
 
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListUsersTitle}"></h:outputText>
+            <h:outputText value="#{bundleUsers.ListUsersTitle}"></h:outputText>
         </ui:define>
 
         <ui:define name="body">
             <h:form id="UsersListForm">
-                <p:panel header="#{bundle.ListUsersTitle} Users">
+                <p:panel header="#{bundleUsers.ListUsersTitle}">
                     <p:dataTable id="datalist" value="#{usersController.items}" var="item"
                                  selectionMode="single" selection="#{usersController.selected}"
                                  paginator="true"
-                                 rowKey="#{item.username}"
+                                 rowKey="#{item.id}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_username}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.username}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_password}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.password}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_name}"/>
+                                <h:outputText value="#{bundleUsers.ListUsersTitle_name}"/>
                             </f:facet>
                             <h:outputText value="#{item.name}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_groupName}"/>
+                                <h:outputText value="#{bundleUsers.ListUsersTitle_username}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.username}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleUsers.ListUsersTitle_password}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.password}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleUsers.ListUsersTitle_groupName}"/>
                             </f:facet>
                             <h:outputText value="#{item.groupName}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{usersController.prepareCreate}" update=":UsersCreateForm" oncomplete="PF('UsersCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":UsersViewForm" oncomplete="PF('UsersViewDialog').show()" disabled="#{empty usersController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":UsersEditForm" oncomplete="PF('UsersEditDialog').show()" disabled="#{empty usersController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{usersController.destroy}" update=":growl,datalist" disabled="#{empty usersController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundleUsers.Create}" actionListener="#{usersController.prepareCreate}" update=":UsersCreateForm" oncomplete="PF('UsersCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundleUsers.View}" update=":UsersViewForm" oncomplete="PF('UsersViewDialog').show()" disabled="#{empty usersController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundleUsers.Edit}" update=":UsersEditForm" oncomplete="PF('UsersEditDialog').show()" disabled="#{empty usersController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundleUsers.Delete}" actionListener="#{usersController.destroy}" update=":growl,datalist" disabled="#{empty usersController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

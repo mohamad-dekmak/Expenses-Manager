@@ -20,13 +20,19 @@
                 <h:form id="menuForm">
                     <p:menubar>
                         <p:menuitem value="#{bundle.Home}" outcome="/auth/index" icon="ui-icon-home"/>
-                        <p:submenu label="Users">
-                            <p:menuitem value="Manage Users" outcome="/users/List.xhtml" />
-                        </p:submenu>
+                        <p:menuitem value="Manage Users" outcome="/users/List.xhtml" />
                         <p:submenu label="Expenses">
-                            <p:menuitem value="Manage Expenses" outcome="/expenses/index.xhtml" />
-                            <p:menuitem value="Expenses Categories" outcome="/expensesCategories/index.xhtml" />
+                            <p:menuitem value="Manage Expenses" outcome="/expenses/List.xhtml" />
+                            <p:menuitem value="Expenses Categories" outcome="/expenseCategories/List.xhtml" />
                         </p:submenu>
+                        <p:menuitem value="Accounts" outcome="/accounts/List.xhtml" />
+                        <p:menuitem value="Journals" outcome="/vouchers/List.xhtml" />
+                        <p:menuitem value="Currencies" outcome="/countries/List.xhtml" />
+                        <p:submenu label="Reports">
+                            <p:menuitem value="Expenses per Category" outcome="/expenses/List.xhtml" />
+                            <p:menuitem value="Expenses per User" outcome="/expenses/List.xhtml" />
+                        </p:submenu>
+                        <p:menuitem value="Logout" outcome="/logout.jsp" />
                     </p:menubar>
                 </h:form>
             </p:layoutUnit>

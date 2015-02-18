@@ -17,23 +17,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "usersController")
+@ManagedBean(name = "expenseCategoriesController")
 @SessionScoped
-public class UsersController implements Serializable {
+public class ExpenseCategoriesController implements Serializable {
 
     @EJB
-    private m.dekmak.UsersFacade ejbFacade;
-    private List<Users> items = null;
-    private Users selected;
+    private m.dekmak.ExpenseCategoriesFacade ejbFacade;
+    private List<ExpenseCategories> items = null;
+    private ExpenseCategories selected;
 
-    public UsersController() {
+    public ExpenseCategoriesController() {
     }
 
-    public Users getSelected() {
+    public ExpenseCategories getSelected() {
         return selected;
     }
 
-    public void setSelected(Users selected) {
+    public void setSelected(ExpenseCategories selected) {
         this.selected = selected;
     }
 
@@ -43,36 +43,36 @@ public class UsersController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private UsersFacade getFacade() {
+    private ExpenseCategoriesFacade getFacade() {
         return ejbFacade;
     }
 
-    public Users prepareCreate() {
-        selected = new Users();
+    public ExpenseCategories prepareCreate() {
+        selected = new ExpenseCategories();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/BundleUsers").getString("UsersCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/BundleExpensesCategories").getString("ExpenseCategoriesCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/BundleUsers").getString("UsersUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/BundleExpensesCategories").getString("ExpenseCategoriesUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/BundleUsers").getString("UsersDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/BundleExpensesCategories").getString("ExpenseCategoriesDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Users> getItems() {
+    public List<ExpenseCategories> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -98,33 +98,33 @@ public class UsersController implements Serializable {
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);
                 } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleUsers").getString("PersistenceErrorOccured"));
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleExpensesCategories").getString("PersistenceErrorOccured"));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleUsers").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleExpensesCategories").getString("PersistenceErrorOccured"));
             }
         }
     }
 
-    public List<Users> getItemsAvailableSelectMany() {
+    public List<ExpenseCategories> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Users> getItemsAvailableSelectOne() {
+    public List<ExpenseCategories> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Users.class)
-    public static class UsersControllerConverter implements Converter {
+    @FacesConverter(forClass = ExpenseCategories.class)
+    public static class ExpenseCategoriesControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            UsersController controller = (UsersController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "usersController");
+            ExpenseCategoriesController controller = (ExpenseCategoriesController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "expenseCategoriesController");
             return controller.getFacade().find(getKey(value));
         }
 
@@ -145,11 +145,11 @@ public class UsersController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Users) {
-                Users o = (Users) object;
+            if (object instanceof ExpenseCategories) {
+                ExpenseCategories o = (ExpenseCategories) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Users.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), ExpenseCategories.class.getName()});
                 return null;
             }
         }

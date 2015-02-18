@@ -8,21 +8,23 @@
 
     <ui:composition>
 
-        <p:dialog id="UsersEditDlg" widgetVar="UsersEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUsersTitle}">
+        <p:dialog id="UsersEditDlg" widgetVar="UsersEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleUsers.EditUsersTitle}">
             <h:form id="UsersEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usersController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditUsersLabel_username}" for="username" />
-                        <p:inputText id="username" value="#{usersController.selected.username}" title="#{bundle.EditUsersTitle_username}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_username}"/>
-                        <p:outputLabel value="#{bundle.EditUsersLabel_password}" for="password" />
-                        <p:password id="password" value="#{usersController.selected.password}" title="#{bundle.EditUsersTitle_password}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_password}"/>
-                        <p:outputLabel value="#{bundle.EditUsersLabel_name}" for="name" />
-                        <p:inputText id="name" value="#{usersController.selected.name}" title="#{bundle.EditUsersTitle_name}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_name}"/>
-                        <p:outputLabel value="#{bundle.EditUsersLabel_groupName}" for="groupName" />
-                        <p:inputText id="groupName" value="#{usersController.selected.groupName}" title="#{bundle.EditUsersTitle_groupName}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_groupName}"/>
+                        <p:outputLabel value="#{bundleUsers.EditUsersLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{usersController.selected.id}" title="#{bundleUsers.EditUsersTitle_id}" required="true" requiredMessage="#{bundleUsers.EditUsersRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundleUsers.EditUsersLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{usersController.selected.name}" title="#{bundleUsers.EditUsersTitle_name}" required="true" requiredMessage="#{bundleUsers.EditUsersRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundleUsers.EditUsersLabel_username}" for="username" />
+                        <p:inputText id="username" value="#{usersController.selected.username}" title="#{bundleUsers.EditUsersTitle_username}" required="true" requiredMessage="#{bundleUsers.EditUsersRequiredMessage_username}"/>
+                        <p:outputLabel value="#{bundleUsers.EditUsersLabel_password}" for="password" />
+                        <p:password id="password" value="#{usersController.selected.password}" title="#{bundleUsers.EditUsersTitle_password}" required="true" requiredMessage="#{bundleUsers.EditUsersRequiredMessage_password}"/>
+                        <p:outputLabel value="#{bundleUsers.EditUsersLabel_groupName}" for="groupName" />
+                        <p:inputText id="groupName" value="#{usersController.selected.groupName}" title="#{bundleUsers.EditUsersTitle_groupName}" required="true" requiredMessage="#{bundleUsers.EditUsersRequiredMessage_groupName}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{usersController.update}" value="#{bundle.Save}" update="display,:UsersListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsersEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="UsersEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{usersController.update}" value="#{bundleUsers.Save}" update="display,:UsersListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsersEditDialog');"/>
+                    <p:commandButton value="#{bundleUsers.Cancel}" onclick="UsersEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ExpenseCategoriesEditDlg" widgetVar="ExpenseCategoriesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleExpensesCategories.EditExpenseCategoriesTitle}">
+            <h:form id="ExpenseCategoriesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{expenseCategoriesController.selected != null}">
+                        <p:outputLabel value="#{bundleExpensesCategories.EditExpenseCategoriesLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{expenseCategoriesController.selected.name}" title="#{bundleExpensesCategories.EditExpenseCategoriesTitle_name}" required="true" requiredMessage="#{bundleExpensesCategories.EditExpenseCategoriesRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundleExpensesCategories.EditExpenseCategoriesLabel_accountId}" for="accountId" />
+                        <p:selectOneMenu id="accountId" value="#{expenseCategoriesController.selected.accountId}" >
+                            <f:selectItem itemLabel="#{bundleExpensesCategories.SelectOneMessage}"/>
+                            <f:selectItems value="#{accountsController.itemsAvailableSelectOne}"
+                                           var="accountIdItem"
+                                           itemValue="#{accountIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleExpensesCategories.EditExpenseCategoriesLabel_expenseCategoryId}" for="expenseCategoryId" />
+                        <p:selectOneMenu id="expenseCategoryId" value="#{expenseCategoriesController.selected.expenseCategoryId}" >
+                            <f:selectItem itemLabel="#{bundleExpensesCategories.SelectOneMessage}"/>
+                            <f:selectItems value="#{expenseCategoriesController.itemsAvailableSelectOne}"
+                                           var="expenseCategoryIdItem"
+                                           itemValue="#{expenseCategoryIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{expenseCategoriesController.update}" value="#{bundleExpensesCategories.Save}" update="display,:ExpenseCategoriesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ExpenseCategoriesEditDialog');"/>
+                    <p:commandButton value="#{bundleExpensesCategories.Cancel}" onclick="ExpenseCategoriesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

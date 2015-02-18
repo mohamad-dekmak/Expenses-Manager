@@ -8,20 +8,20 @@
 
     <ui:composition>
 
-        <p:dialog id="UsersViewDlg" widgetVar="UsersViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUsersTitle}">
+        <p:dialog id="UsersViewDlg" widgetVar="UsersViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleUsers.ViewUsersTitle}">
             <h:form id="UsersViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usersController.selected != null}">
-                        <h:outputText value="#{bundle.ViewUsersLabel_username}"/>
-                        <h:outputText value="#{usersController.selected.username}" title="#{bundle.ViewUsersTitle_username}"/>
-                        <h:outputText value="#{bundle.ViewUsersLabel_password}"/>
-                        <h:outputText value="#{usersController.selected.password}" title="#{bundle.ViewUsersTitle_password}"/>
-                        <h:outputText value="#{bundle.ViewUsersLabel_name}"/>
-                        <h:outputText value="#{usersController.selected.name}" title="#{bundle.ViewUsersTitle_name}"/>
-                        <h:outputText value="#{bundle.ViewUsersLabel_groupName}"/>
-                        <h:outputText value="#{usersController.selected.groupName}" title="#{bundle.ViewUsersTitle_groupName}"/>
+                        <h:outputText value="#{bundleUsers.ViewUsersLabel_name}"/>
+                        <h:outputText value="#{usersController.selected.name}" title="#{bundleUsers.ViewUsersTitle_name}"/>
+                        <h:outputText value="#{bundleUsers.ViewUsersLabel_username}"/>
+                        <h:outputText value="#{usersController.selected.username}" title="#{bundleUsers.ViewUsersTitle_username}"/>
+                        <h:outputText value="#{bundleUsers.ViewUsersLabel_password}"/>
+                        <h:outputText value="#{usersController.selected.password}" title="#{bundleUsers.ViewUsersTitle_password}"/>
+                        <h:outputText value="#{bundleUsers.ViewUsersLabel_groupName}"/>
+                        <h:outputText value="#{usersController.selected.groupName}" title="#{bundleUsers.ViewUsersTitle_groupName}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="UsersViewDialog.hide()"/>
+                    <p:commandButton value="#{bundleUsers.Close}" onclick="UsersViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -14,15 +14,43 @@
                 <h:link outcome="/logout.jsp" value="Logout" style="float: right;" />
                 <br />
                 <br />
-                <p:panel header="Hello User" style="height: 300px;">
-                    <h4>This is Auth Secure Area!</h4>
-                    <p:panel header="Manage Users" style="width: 48%; float: left;">
-                        <h:link outcome="/users/List" value="Show All Users Items" />
+                <p:panel header="This is Auth Secure Area!" style="height: 450px;">
+                    <br />
+                    <p:panel header="Users" style="width: 48%; float: left;">
+                        <br />
+                        <h:link outcome="/users/List" value="Manage Users" />
+                        <br />
+                        <br />
                     </p:panel>
                     <p:panel header="Expenses" style="width: 50%; float: right;">
-                        <h:link outcome="/expenses/index" value="Manage Expenses" />
+                        <h:link outcome="/expenses/List" value="Manage Expenses" />
                         <br />
-                        <h:link outcome="/expensesCategories/index" value="Expenses Categories" />
+                        <br />
+                        <h:link outcome="/expenseCategories/List" value="Expenses Categories" />
+                    </p:panel>
+                    <p:panel header="Accounts" style="width: 48%; float: left;">
+                        <br />
+                        <h:link outcome="/accounts/List" value="Chart of Accounts" />
+                        <br />
+                        <br />
+                    </p:panel>
+                    <p:panel header="Journals" style="width: 50%; float: right;">
+                        <br />
+                        <h:link outcome="/vouchers/List" value="Feed Petty Cash" />
+                        <br />
+                        <br />
+                    </p:panel>
+                    <p:panel header="Currencies" style="width: 48%; float: left;">
+                        <br />
+                        <h:link outcome="/countries/List" value="Currencies" />
+                        <br />
+                        <br />
+                    </p:panel>
+                    <p:panel header="Reports" style="width: 50%; float: right;">
+                        <h:link outcome="/expenses/List" value="Expenses per Category" />
+                        <br />
+                        <br />
+                        <h:link outcome="/expenses/List" value="Expenses per User" />
                     </p:panel>
                 </p:panel>
             </center>

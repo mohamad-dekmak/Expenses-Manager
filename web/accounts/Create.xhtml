@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AccountsCreateDlg" widgetVar="AccountsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleAccouts.CreateAccountsTitle}">
+            <h:form id="AccountsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{accountsController.selected != null}">
+                        <p:outputLabel value="#{bundleAccouts.CreateAccountsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{accountsController.selected.id}" title="#{bundleAccouts.CreateAccountsTitle_id}" required="true" requiredMessage="#{bundleAccouts.CreateAccountsRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundleAccouts.CreateAccountsLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{accountsController.selected.name}" title="#{bundleAccouts.CreateAccountsTitle_name}" required="true" requiredMessage="#{bundleAccouts.CreateAccountsRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundleAccouts.CreateAccountsLabel_description}" for="description" />
+                        <p:inputTextarea rows="4" cols="30" id="description" value="#{accountsController.selected.description}" title="#{bundleAccouts.CreateAccountsTitle_description}" />
+                        <p:outputLabel value="#{bundleAccouts.CreateAccountsLabel_currencyId}" for="currencyId" />
+                        <p:selectOneMenu id="currencyId" value="#{accountsController.selected.currencyId}" required="true" requiredMessage="#{bundleAccouts.EditAccountsRequiredMessage_currencyId}">
+                            <f:selectItems value="#{countriesController.itemsAvailableSelectOne}"
+                                           var="currencyIdItem"
+                                           itemValue="#{currencyIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{accountsController.create}" value="#{bundleAccouts.Save}" update="display,:AccountsListForm:datalist,:growl" oncomplete="handleSubmit(args,'AccountsCreateDialog');"/>
+                    <p:commandButton value="#{bundleAccouts.Cancel}" onclick="AccountsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

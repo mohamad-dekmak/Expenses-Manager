@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CountriesCreateDlg" widgetVar="CountriesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleAccouts.CreateCountriesTitle}">
+            <h:form id="CountriesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{countriesController.selected != null}">
+                        <p:outputLabel value="#{bundleAccouts.CreateCountriesLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{countriesController.selected.id}" title="#{bundleAccouts.CreateCountriesTitle_id}" required="true" requiredMessage="#{bundleAccouts.CreateCountriesRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundleAccouts.CreateCountriesLabel_countryCode}" for="countryCode" />
+                        <p:inputText id="countryCode" value="#{countriesController.selected.countryCode}" title="#{bundleAccouts.CreateCountriesTitle_countryCode}" required="true" requiredMessage="#{bundleAccouts.CreateCountriesRequiredMessage_countryCode}"/>
+                        <p:outputLabel value="#{bundleAccouts.CreateCountriesLabel_countryName}" for="countryName" />
+                        <p:inputText id="countryName" value="#{countriesController.selected.countryName}" title="#{bundleAccouts.CreateCountriesTitle_countryName}" required="true" requiredMessage="#{bundleAccouts.CreateCountriesRequiredMessage_countryName}"/>
+                        <p:outputLabel value="#{bundleAccouts.CreateCountriesLabel_currencyCode}" for="currencyCode" />
+                        <p:inputText id="currencyCode" value="#{countriesController.selected.currencyCode}" title="#{bundleAccouts.CreateCountriesTitle_currencyCode}" />
+                        <p:outputLabel value="#{bundleAccouts.CreateCountriesLabel_currencyName}" for="currencyName" />
+                        <p:inputText id="currencyName" value="#{countriesController.selected.currencyName}" title="#{bundleAccouts.CreateCountriesTitle_currencyName}" />
+                        <p:outputLabel value="#{bundleAccouts.CreateCountriesLabel_isoNumeric}" for="isoNumeric" />
+                        <p:inputText id="isoNumeric" value="#{countriesController.selected.isoNumeric}" title="#{bundleAccouts.CreateCountriesTitle_isoNumeric}" />
+                        <p:outputLabel value="#{bundleAccouts.CreateCountriesLabel_languages}" for="languages" />
+                        <p:inputText id="languages" value="#{countriesController.selected.languages}" title="#{bundleAccouts.CreateCountriesTitle_languages}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{countriesController.create}" value="#{bundleAccouts.Save}" update="display,:CountriesListForm:datalist,:growl" oncomplete="handleSubmit(args,'CountriesCreateDialog');"/>
+                    <p:commandButton value="#{bundleAccouts.Cancel}" onclick="CountriesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
