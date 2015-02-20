@@ -12,16 +12,16 @@
             <h:form id="ExpensesViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{expensesController.selected != null}">
-                        <h:outputText value="#{bundleExpense.ViewExpensesLabel_voucherId}"/>
-                        <h:outputText value="#{expensesController.selected.voucherId}" title="#{bundleExpense.ViewExpensesTitle_voucherId}"/>
                         <h:outputText value="#{bundleExpense.ViewExpensesLabel_amount}"/>
                         <h:outputText value="#{expensesController.selected.amount}" title="#{bundleExpense.ViewExpensesTitle_amount}"/>
                         <h:outputText value="#{bundleExpense.ViewExpensesLabel_expenseCategoryId}"/>
-                        <h:outputText value="#{expensesController.selected.expenseCategoryId}" title="#{bundleExpense.ViewExpensesTitle_expenseCategoryId}"/>
+                        <h:outputText value="#{expensesController.selected.expenseCategoryId.name}" title="#{bundleExpense.ViewExpensesTitle_expenseCategoryId}"/>
                         <h:outputText value="#{bundleExpense.ViewExpensesLabel_expenseAccount}"/>
-                        <h:outputText value="#{expensesController.selected.expenseAccount}" title="#{bundleExpense.ViewExpensesTitle_expenseAccount}"/>
+                        <h:outputText value="#{expensesController.selected.expenseAccount.name}" title="#{bundleExpense.ViewExpensesTitle_expenseAccount}"/>
                         <h:outputText value="#{bundleExpense.ViewExpensesLabel_paidThrough}"/>
-                        <h:outputText value="#{expensesController.selected.paidThrough}" title="#{bundleExpense.ViewExpensesTitle_paidThrough}"/>
+                        <h:outputText value="#{expensesController.selected.paidThrough.name}" title="#{bundleExpense.ViewExpensesTitle_paidThrough}"/>
+                        <h:outputText value="#{bundleExpense.ViewExpensesLabel_description}"/>
+                        <h:outputText value="#{expensesController.selected.description}" title="#{bundleExpense.ViewExpensesTitle_description}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundleExpense.Close}" onclick="ExpensesViewDialog.hide()"/>
                 </h:panelGroup>

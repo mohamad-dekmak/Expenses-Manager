@@ -54,18 +54,18 @@ public class AccountsController implements Serializable {
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/BundleAccouts").getString("AccountsCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/BundleAccounts").getString("AccountsCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/BundleAccouts").getString("AccountsUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/BundleAccounts").getString("AccountsUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/BundleAccouts").getString("AccountsDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/BundleAccounts").getString("AccountsDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
@@ -98,11 +98,11 @@ public class AccountsController implements Serializable {
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);
                 } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleAccouts").getString("PersistenceErrorOccured"));
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleAccounts").getString("PersistenceErrorOccured"));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleAccouts").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleAccounts").getString("PersistenceErrorOccured"));
             }
         }
     }

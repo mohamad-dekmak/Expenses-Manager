@@ -8,18 +8,20 @@
 
     <ui:composition>
 
-        <p:dialog id="AccountsViewDlg" widgetVar="AccountsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleAccouts.ViewAccountsTitle}">
+        <p:dialog id="AccountsViewDlg" widgetVar="AccountsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleAccounts.ViewAccountsTitle}">
             <h:form id="AccountsViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{accountsController.selected != null}">
-                        <h:outputText value="#{bundleAccouts.ViewAccountsLabel_name}"/>
-                        <h:outputText value="#{accountsController.selected.name}" title="#{bundleAccouts.ViewAccountsTitle_name}"/>
-                        <h:outputText value="#{bundleAccouts.ViewAccountsLabel_description}"/>
-                        <h:outputText value="#{accountsController.selected.description}" title="#{bundleAccouts.ViewAccountsTitle_description}"/>
-                        <h:outputText value="#{bundleAccouts.ViewAccountsLabel_currencyId}"/>
-                        <h:outputText value="#{accountsController.selected.currencyId}" title="#{bundleAccouts.ViewAccountsTitle_currencyId}"/>
+                        <h:outputText value="#{bundleAccounts.ViewAccountsLabel_name}"/>
+                        <h:outputText value="#{accountsController.selected.name}" title="#{bundleAccounts.ViewAccountsTitle_name}"/>
+                        <h:outputText value="#{bundleAccounts.ViewAccountsLabel_accountTypeId}"/>
+                        <h:outputText value="#{accountsController.selected.accountTypeId.name}" title="#{bundleAccounts.ViewAccountsTitle_accountTypeId}"/>
+                        <h:outputText value="#{bundleAccounts.ViewAccountsLabel_currencyId}"/>
+                        <h:outputText value="#{accountsController.selected.currencyId.currencyCode}" title="#{bundleAccounts.ViewAccountsTitle_currencyId}"/>
+                        <h:outputText value="#{bundleAccounts.ViewAccountsLabel_description}"/>
+                        <h:outputText value="#{accountsController.selected.description}" title="#{bundleAccounts.ViewAccountsTitle_description}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundleAccouts.Close}" onclick="AccountsViewDialog.hide()"/>
+                    <p:commandButton value="#{bundleAccounts.Close}" onclick="AccountsViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

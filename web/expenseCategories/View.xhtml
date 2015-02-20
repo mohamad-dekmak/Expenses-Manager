@@ -15,9 +15,9 @@
                         <h:outputText value="#{bundleExpensesCategories.ViewExpenseCategoriesLabel_name}"/>
                         <h:outputText value="#{expenseCategoriesController.selected.name}" title="#{bundleExpensesCategories.ViewExpenseCategoriesTitle_name}"/>
                         <h:outputText value="#{bundleExpensesCategories.ViewExpenseCategoriesLabel_accountId}"/>
-                        <h:outputText value="#{expenseCategoriesController.selected.accountId}" title="#{bundleExpensesCategories.ViewExpenseCategoriesTitle_accountId}"/>
+                        <h:outputText value="#{expenseCategoriesController.selected.accountId.name}" title="#{bundleExpensesCategories.ViewExpenseCategoriesTitle_accountId}"/>
                         <h:outputText value="#{bundleExpensesCategories.ViewExpenseCategoriesLabel_expenseCategoryId}"/>
-                        <h:outputText value="#{expenseCategoriesController.selected.expenseCategoryId}" title="#{bundleExpensesCategories.ViewExpenseCategoriesTitle_expenseCategoryId}"/>
+                        <h:outputText value="#{expenseCategoriesController.selected.expenseCategoryId.name}" title="#{bundleExpensesCategories.ViewExpenseCategoriesTitle_expenseCategoryId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundleExpensesCategories.Close}" onclick="ExpenseCategoriesViewDialog.hide()"/>
                 </h:panelGroup>

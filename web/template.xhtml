@@ -25,8 +25,11 @@
                             <p:menuitem value="Manage Expenses" outcome="/expenses/List.xhtml" />
                             <p:menuitem value="Expenses Categories" outcome="/expenseCategories/List.xhtml" />
                         </p:submenu>
-                        <p:menuitem value="Accounts" outcome="/accounts/List.xhtml" />
-                        <p:menuitem value="Journals" outcome="/vouchers/List.xhtml" />
+                        <p:submenu label="Accounts">
+                            <p:menuitem value="Chart of Accounts" outcome="/accounts/List.xhtml" />
+                            <p:menuitem value="Account Types" outcome="/accountTypes/List.xhtml" />
+                        </p:submenu>
+                        <p:menuitem value="Journals" outcome="/index" />
                         <p:menuitem value="Currencies" outcome="/countries/List.xhtml" />
                         <p:submenu label="Reports">
                             <p:menuitem value="Expenses per Category" outcome="/expenses/List.xhtml" />

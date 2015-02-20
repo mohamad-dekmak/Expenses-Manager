@@ -12,10 +12,6 @@
             <h:form id="ExpensesCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{expensesController.selected != null}">
-                        <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{expensesController.selected.id}" title="#{bundleExpense.CreateExpensesTitle_id}" required="true" requiredMessage="#{bundleExpense.CreateExpensesRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_voucherId}" for="voucherId" />
-                        <p:inputText id="voucherId" value="#{expensesController.selected.voucherId}" title="#{bundleExpense.CreateExpensesTitle_voucherId}" required="true" requiredMessage="#{bundleExpense.CreateExpensesRequiredMessage_voucherId}"/>
                         <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_amount}" for="amount" />
                         <p:inputText id="amount" value="#{expensesController.selected.amount}" title="#{bundleExpense.CreateExpensesTitle_amount}" required="true" requiredMessage="#{bundleExpense.CreateExpensesRequiredMessage_amount}"/>
                         <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_expenseCategoryId}" for="expenseCategoryId" />
@@ -24,18 +20,14 @@
                                            var="expenseCategoryIdItem"
                                            itemValue="#{expenseCategoryIdItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_expenseAccount}" for="expenseAccount" />
-                        <p:selectOneMenu id="expenseAccount" value="#{expensesController.selected.expenseAccount}" required="true" requiredMessage="#{bundleExpense.EditExpensesRequiredMessage_expenseAccount}">
-                            <f:selectItems value="#{accountsController.itemsAvailableSelectOne}"
-                                           var="expenseAccountItem"
-                                           itemValue="#{expenseAccountItem}"/>
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_paidThrough}" for="paidThrough" />
                         <p:selectOneMenu id="paidThrough" value="#{expensesController.selected.paidThrough}" required="true" requiredMessage="#{bundleExpense.EditExpensesRequiredMessage_paidThrough}">
                             <f:selectItems value="#{accountsController.itemsAvailableSelectOne}"
                                            var="paidThroughItem"
                                            itemValue="#{paidThroughItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_description}" for="description" />
+                        <p:inputTextarea rows="4" cols="30" id="description" value="#{expensesController.selected.description}" title="#{bundleExpense.CreateExpensesTitle_description}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{expensesController.create}" value="#{bundleExpense.Save}" update="display,:ExpensesListForm:datalist,:growl" oncomplete="handleSubmit(args,'ExpensesCreateDialog');"/>
                     <p:commandButton value="#{bundleExpense.Cancel}" onclick="ExpensesCreateDialog.hide()"/>

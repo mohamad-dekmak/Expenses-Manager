@@ -6,35 +6,35 @@
 package m.dekmak;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author mdekmak
  */
 @Entity
-@Table(name = "accounts")
+@Table(name = "account_types")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Accounts.findAll", query = "SELECT a FROM Accounts a"),
-    @NamedQuery(name = "Accounts.findById", query = "SELECT a FROM Accounts a WHERE a.id = :id"),
-    @NamedQuery(name = "Accounts.findByName", query = "SELECT a FROM Accounts a WHERE a.name = :name"),
-    @NamedQuery(name = "Accounts.findGroupAsset", query = "SELECT a FROM Accounts a WHERE a.accountTypeId IN ('1')")})
-public class Accounts implements Serializable {
+    @NamedQuery(name = "AccountTypes.findAll", query = "SELECT a FROM AccountTypes a"),
+    @NamedQuery(name = "AccountTypes.findById", query = "SELECT a FROM AccountTypes a WHERE a.id = :id"),
+    @NamedQuery(name = "AccountTypes.findByName", query = "SELECT a FROM AccountTypes a WHERE a.name = :name")})
+public class AccountTypes implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,25 +46,17 @@ public class Accounts implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
-    @Lob
-    @Size(max = 65535)
-    @Column(name = "description")
-    private String description;
-    @JoinColumn(name = "currency_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Countries currencyId;
-    @JoinColumn(name = "account_type_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private AccountTypes accountTypeId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountTypeId")
+    private Collection<Accounts> accountsCollection;
 
-    public Accounts() {
+    public AccountTypes() {
     }
 
-    public Accounts(Integer id) {
+    public AccountTypes(Integer id) {
         this.id = id;
     }
 
-    public Accounts(Integer id, String name) {
+    public AccountTypes(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -85,28 +77,13 @@ public class Accounts implements Serializable {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    @XmlTransient
+    public Collection<Accounts> getAccountsCollection() {
+        return accountsCollection;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Countries getCurrencyId() {
-        return currencyId;
-    }
-
-    public void setCurrencyId(Countries currencyId) {
-        this.currencyId = currencyId;
-    }
-
-    public AccountTypes getAccountTypeId() {
-        return accountTypeId;
-    }
-
-    public void setAccountTypeId(AccountTypes accountTypeId) {
-        this.accountTypeId = accountTypeId;
+    public void setAccountsCollection(Collection<Accounts> accountsCollection) {
+        this.accountsCollection = accountsCollection;
     }
 
     @Override
@@ -119,10 +96,10 @@ public class Accounts implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Accounts)) {
+        if (!(object instanceof AccountTypes)) {
             return false;
         }
-        Accounts other = (Accounts) object;
+        AccountTypes other = (AccountTypes) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

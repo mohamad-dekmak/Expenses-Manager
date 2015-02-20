@@ -171,7 +171,7 @@ public class Countries implements Serializable {
 
     @Override
     public String toString() {
-        return "m.dekmak.Countries[ id=" + id + " ]";
+        return currencyCode;
     }
     
 }

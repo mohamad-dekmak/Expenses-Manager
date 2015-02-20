@@ -8,26 +8,30 @@
 
     <ui:composition>
 
-        <p:dialog id="AccountsEditDlg" widgetVar="AccountsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleAccouts.EditAccountsTitle}">
+        <p:dialog id="AccountsEditDlg" widgetVar="AccountsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleAccounts.EditAccountsTitle}">
             <h:form id="AccountsEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{accountsController.selected != null}">
-                        <p:outputLabel value="#{bundleAccouts.EditAccountsLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{accountsController.selected.id}" title="#{bundleAccouts.EditAccountsTitle_id}" required="true" requiredMessage="#{bundleAccouts.EditAccountsRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundleAccouts.EditAccountsLabel_name}" for="name" />
-                        <p:inputText id="name" value="#{accountsController.selected.name}" title="#{bundleAccouts.EditAccountsTitle_name}" required="true" requiredMessage="#{bundleAccouts.EditAccountsRequiredMessage_name}"/>
-                        <p:outputLabel value="#{bundleAccouts.EditAccountsLabel_description}" for="description" />
-                        <p:inputTextarea rows="4" cols="30" id="description" value="#{accountsController.selected.description}" title="#{bundleAccouts.EditAccountsTitle_description}" />
-                        <p:outputLabel value="#{bundleAccouts.EditAccountsLabel_currencyId}" for="currencyId" />
-                        <p:selectOneMenu id="currencyId" value="#{accountsController.selected.currencyId}" required="true" requiredMessage="#{bundleAccouts.EditAccountsRequiredMessage_currencyId}">
-                            <f:selectItem itemLabel="#{bundleAccouts.SelectOneMessage}"/>
+                        <p:outputLabel value="#{bundleAccounts.EditAccountsLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{accountsController.selected.name}" title="#{bundleAccounts.EditAccountsTitle_name}" required="true" requiredMessage="#{bundleAccounts.EditAccountsRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundleAccounts.EditAccountsLabel_accountTypeId}" for="accountTypeId" />
+                        <p:selectOneMenu id="accountTypeId" value="#{accountsController.selected.accountTypeId}" required="true" requiredMessage="#{bundleAccounts.EditAccountsRequiredMessage_accountTypeId}">
+                            <f:selectItem itemLabel="#{bundleAccounts.SelectOneMessage}"/>
+                            <f:selectItems value="#{accountTypesController.itemsAvailableSelectOne}"
+                                           var="accountTypeIdItem"
+                                           itemValue="#{accountTypeIdItem}"/>
+                        </p:selectOneMenu><p:outputLabel value="#{bundleAccounts.EditAccountsLabel_currencyId}" for="currencyId" />
+                        <p:selectOneMenu id="currencyId" value="#{accountsController.selected.currencyId}" required="true" requiredMessage="#{bundleAccounts.EditAccountsRequiredMessage_currencyId}">
+                            <f:selectItem itemLabel="#{bundleAccounts.SelectOneMessage}"/>
                             <f:selectItems value="#{countriesController.itemsAvailableSelectOne}"
                                            var="currencyIdItem"
                                            itemValue="#{currencyIdItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleAccounts.EditAccountsLabel_description}" for="description" />
+                        <p:inputTextarea rows="4" cols="30" id="description" value="#{accountsController.selected.description}" title="#{bundleAccounts.EditAccountsTitle_description}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{accountsController.update}" value="#{bundleAccouts.Save}" update="display,:AccountsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AccountsEditDialog');"/>
-                    <p:commandButton value="#{bundleAccouts.Cancel}" onclick="AccountsEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{accountsController.update}" value="#{bundleAccounts.Save}" update="display,:AccountsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AccountsEditDialog');"/>
+                    <p:commandButton value="#{bundleAccounts.Cancel}" onclick="AccountsEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

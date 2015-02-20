@@ -14,11 +14,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -31,20 +33,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Expenses.findAll", query = "SELECT e FROM Expenses e"),
     @NamedQuery(name = "Expenses.findById", query = "SELECT e FROM Expenses e WHERE e.id = :id"),
-    @NamedQuery(name = "Expenses.findByVoucherId", query = "SELECT e FROM Expenses e WHERE e.voucherId = :voucherId"),
     @NamedQuery(name = "Expenses.findByAmount", query = "SELECT e FROM Expenses e WHERE e.amount = :amount")})
 public class Expenses implements Serializable {
+    @JoinColumn(name = "voucher_header_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private VoucherHeaders voucherHeaderId;
+    @Lob
+    @Size(max = 65535)
+    @Column(name = "description")
+    private String description;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "voucher_id")
-    private int voucherId;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Column(name = "amount")
@@ -66,9 +69,8 @@ public class Expenses implements Serializable {
         this.id = id;
     }
 
-    public Expenses(Integer id, int voucherId, BigDecimal amount) {
+    public Expenses(Integer id, BigDecimal amount) {
         this.id = id;
-        this.voucherId = voucherId;
         this.amount = amount;
     }
 
@@ -78,14 +80,6 @@ public class Expenses implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public int getVoucherId() {
-        return voucherId;
-    }
-
-    public void setVoucherId(int voucherId) {
-        this.voucherId = voucherId;
     }
 
     public BigDecimal getAmount() {
@@ -142,7 +136,23 @@ public class Expenses implements Serializable {
 
     @Override
     public String toString() {
-        return "m.dekmak.Expenses[ id=" + id + " ]";
+        return description + " amount: " + amount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public VoucherHeaders getVoucherHeaderId() {
+        return voucherHeaderId;
+    }
+
+    public void setVoucherHeaderId(VoucherHeaders voucherHeaderId) {
+        this.voucherHeaderId = voucherHeaderId;
     }
     
 }

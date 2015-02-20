@@ -36,13 +36,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundleExpensesCategories.ListExpenseCategoriesTitle_accountId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.accountId}"/>
+                            <h:outputText value="#{item.accountId.name}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundleExpensesCategories.ListExpenseCategoriesTitle_expenseCategoryId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.expenseCategoryId}"/>
+                            <h:outputText value="#{item.expenseCategoryId.name}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundleExpensesCategories.Create}" actionListener="#{expenseCategoriesController.prepareCreate}" update=":ExpenseCategoriesCreateForm" oncomplete="PF('ExpenseCategoriesCreateDialog').show()"/>

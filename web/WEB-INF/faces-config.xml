@@ -21,10 +21,6 @@
             <var>bundleExpensesCategories</var>
         </resource-bundle>
         <resource-bundle>
-            <base-name>/BundleVouchers</base-name>
-            <var>bundleVouchers</var>
-        </resource-bundle>
-        <resource-bundle>
             <base-name>/BundleExpenses</base-name>
             <var>bundleExpenses</var>
         </resource-bundle>
@@ -35,6 +31,14 @@
         <resource-bundle>
             <base-name>/BundleUsers</base-name>
             <var>bundleUsers</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/BundleAccounts</base-name>
+            <var>bundleAccounts</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/BundleAccounts</base-name>
+            <var>bundleAccounts</var>
         </resource-bundle>
     </application>
 </faces-config>

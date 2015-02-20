@@ -7,7 +7,6 @@ package m.dekmak;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,8 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,37 +28,20 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author mdekmak
  */
 @Entity
-@Table(name = "vouchers")
+@Table(name = "voucher_details")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Vouchers.findAll", query = "SELECT v FROM Vouchers v"),
-    @NamedQuery(name = "Vouchers.findById", query = "SELECT v FROM Vouchers v WHERE v.id = :id"),
-    @NamedQuery(name = "Vouchers.findByVoucherType", query = "SELECT v FROM Vouchers v WHERE v.voucherType = :voucherType"),
-    @NamedQuery(name = "Vouchers.findByDated", query = "SELECT v FROM Vouchers v WHERE v.dated = :dated"),
-    @NamedQuery(name = "Vouchers.findByDrCr", query = "SELECT v FROM Vouchers v WHERE v.drCr = :drCr"),
-    @NamedQuery(name = "Vouchers.findByAmount", query = "SELECT v FROM Vouchers v WHERE v.amount = :amount"),
-    @NamedQuery(name = "Vouchers.findByCreatedOn", query = "SELECT v FROM Vouchers v WHERE v.createdOn = :createdOn")})
-public class Vouchers implements Serializable {
+    @NamedQuery(name = "VoucherDetails.findAll", query = "SELECT v FROM VoucherDetails v"),
+    @NamedQuery(name = "VoucherDetails.findById", query = "SELECT v FROM VoucherDetails v WHERE v.id = :id"),
+    @NamedQuery(name = "VoucherDetails.findByDrCr", query = "SELECT v FROM VoucherDetails v WHERE v.drCr = :drCr"),
+    @NamedQuery(name = "VoucherDetails.findByAmount", query = "SELECT v FROM VoucherDetails v WHERE v.amount = :amount")})
+public class VoucherDetails implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 3)
-    @Column(name = "voucherType")
-    private String voucherType;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "dated")
-    @Temporal(TemporalType.DATE)
-    private Date dated;
-    @Lob
-    @Size(max = 65535)
-    @Column(name = "description")
-    private String description;
     @Basic(optional = false)
     @NotNull
     @Column(name = "drCr")
@@ -71,32 +51,28 @@ public class Vouchers implements Serializable {
     @NotNull
     @Column(name = "amount")
     private BigDecimal amount;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "createdOn")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdOn;
-    @JoinColumn(name = "createdBy", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Users createdBy;
+    @Lob
+    @Size(max = 65535)
+    @Column(name = "description")
+    private String description;
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Accounts accountId;
+    @JoinColumn(name = "voucher_header_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private VoucherHeaders voucherHeaderId;
 
-    public Vouchers() {
+    public VoucherDetails() {
     }
 
-    public Vouchers(Integer id) {
+    public VoucherDetails(Integer id) {
         this.id = id;
     }
 
-    public Vouchers(Integer id, String voucherType, Date dated, Character drCr, BigDecimal amount, Date createdOn) {
+    public VoucherDetails(Integer id, Character drCr, BigDecimal amount) {
         this.id = id;
-        this.voucherType = voucherType;
-        this.dated = dated;
         this.drCr = drCr;
         this.amount = amount;
-        this.createdOn = createdOn;
     }
 
     public Integer getId() {
@@ -105,30 +81,6 @@ public class Vouchers implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getVoucherType() {
-        return voucherType;
-    }
-
-    public void setVoucherType(String voucherType) {
-        this.voucherType = voucherType;
-    }
-
-    public Date getDated() {
-        return dated;
-    }
-
-    public void setDated(Date dated) {
-        this.dated = dated;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Character getDrCr() {
@@ -147,20 +99,12 @@ public class Vouchers implements Serializable {
         this.amount = amount;
     }
 
-    public Date getCreatedOn() {
-        return createdOn;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCreatedOn(Date createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public Users getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(Users createdBy) {
-        this.createdBy = createdBy;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Accounts getAccountId() {
@@ -169,6 +113,14 @@ public class Vouchers implements Serializable {
 
     public void setAccountId(Accounts accountId) {
         this.accountId = accountId;
+    }
+
+    public VoucherHeaders getVoucherHeaderId() {
+        return voucherHeaderId;
+    }
+
+    public void setVoucherHeaderId(VoucherHeaders voucherHeaderId) {
+        this.voucherHeaderId = voucherHeaderId;
     }
 
     @Override
@@ -181,10 +133,10 @@ public class Vouchers implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Vouchers)) {
+        if (!(object instanceof VoucherDetails)) {
             return false;
         }
-        Vouchers other = (Vouchers) object;
+        VoucherDetails other = (VoucherDetails) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -193,7 +145,7 @@ public class Vouchers implements Serializable {
 
     @Override
     public String toString() {
-        return "m.dekmak.Vouchers[ id=" + id + " ]";
+        return "m.dekmak.VoucherDetails[ id=" + id + " ]";
     }
     
 }

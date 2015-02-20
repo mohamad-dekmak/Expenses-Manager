@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author mdekmak
  */
 @Stateless
-public class VouchersFacade extends AbstractFacade<Vouchers> {
+public class AccountTypesFacade extends AbstractFacade<AccountTypes> {
     @PersistenceContext(unitName = "ExpensesManagerPU")
     private EntityManager em;
 
@@ -23,8 +23,8 @@ public class VouchersFacade extends AbstractFacade<Vouchers> {
         return em;
     }
 
-    public VouchersFacade() {
-        super(Vouchers.class);
+    public AccountTypesFacade() {
+        super(AccountTypes.class);
     }
     
 }

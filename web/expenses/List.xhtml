@@ -28,12 +28,6 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundleExpense.ListExpensesTitle_voucherId}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.voucherId}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundleExpense.ListExpensesTitle_amount}"/>
                             </f:facet>
                             <h:outputText value="#{item.amount}"/>
@@ -42,19 +36,25 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundleExpense.ListExpensesTitle_expenseCategoryId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.expenseCategoryId}"/>
+                            <h:outputText value="#{item.expenseCategoryId.name}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundleExpense.ListExpensesTitle_expenseAccount}"/>
                             </f:facet>
-                            <h:outputText value="#{item.expenseAccount}"/>
+                            <h:outputText value="#{item.expenseAccount.name}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundleExpense.ListExpensesTitle_paidThrough}"/>
                             </f:facet>
-                            <h:outputText value="#{item.paidThrough}"/>
+                            <h:outputText value="#{item.paidThrough.name}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundleExpense.ListExpensesTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundleExpense.Create}" actionListener="#{expensesController.prepareCreate}" update=":ExpensesCreateForm" oncomplete="PF('ExpensesCreateDialog').show()"/>
