@@ -34,15 +34,17 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundleExpense.ListExpensesTitle_expenseCategoryId}"/>
+                                <h:outputText value="#{bundleExpense.ListExpensesTitle_dated}"/>
                             </f:facet>
-                            <h:outputText value="#{item.expenseCategoryId.name}"/>
+                            <h:outputText value="#{item.dated}">
+                                <f:convertDateTime pattern="yyyy-MM-dd" />
+                            </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundleExpense.ListExpensesTitle_expenseAccount}"/>
+                                <h:outputText value="#{bundleExpense.ListExpensesTitle_expenseCategoryId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.expenseAccount.name}"/>
+                            <h:outputText value="#{item.expenseCategoryId.name}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

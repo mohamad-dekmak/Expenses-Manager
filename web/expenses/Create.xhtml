@@ -4,8 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-
+      xmlns:p="http://primefaces.org/ui"
+      >
     <ui:composition>
 
         <p:dialog id="ExpensesCreateDlg" widgetVar="ExpensesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleExpense.CreateExpensesTitle}">
@@ -14,26 +14,32 @@
                     <p:panelGrid columns="2" rendered="#{expensesController.selected != null}">
                         <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_amount}" for="amount" />
                         <p:inputText id="amount" value="#{expensesController.selected.amount}" title="#{bundleExpense.CreateExpensesTitle_amount}" required="true" requiredMessage="#{bundleExpense.CreateExpensesRequiredMessage_amount}"/>
+                        <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_dated}" for="dated" />
+                        <p:calendar id="dated" pattern="yyyy-MM-dd" value="#{expensesController.selected.dated}" title="#{bundleExpense.CreateExpensesTitle_dated}" required="true" requiredMessage="#{bundleExpense.CreateExpensesRequiredMessage_dated}" showOn="button" />
                         <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_expenseCategoryId}" for="expenseCategoryId" />
                         <p:selectOneMenu id="expenseCategoryId" value="#{expensesController.selected.expenseCategoryId}" required="true" requiredMessage="#{bundleExpense.EditExpensesRequiredMessage_expenseCategoryId}">
+                            <f:selectItem itemLabel="#{bundleExpense.CreateExpensesLabel_selectCategory}" itemValue="#{null}"/> 
                             <f:selectItems value="#{expenseCategoriesController.itemsAvailableSelectOne}"
                                            var="expenseCategoryIdItem"
                                            itemValue="#{expenseCategoryIdItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_paidThrough}" for="paidThrough" />
                         <p:selectOneMenu id="paidThrough" value="#{expensesController.selected.paidThrough}" required="true" requiredMessage="#{bundleExpense.EditExpensesRequiredMessage_paidThrough}">
-                            <f:selectItems value="#{accountsController.itemsAvailableSelectOne}"
+                            <f:selectItems value="#{accountsController.paidThroughItems}"
                                            var="paidThroughItem"
                                            itemValue="#{paidThroughItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_description}" for="description" />
                         <p:inputTextarea rows="4" cols="30" id="description" value="#{expensesController.selected.description}" title="#{bundleExpense.CreateExpensesTitle_description}" />
+                        <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_createdOn}" for="createdOn" />
+                        <p:calendar id="createdOn" pattern="yyyy-MM-dd" value="#{expensesController.selected.createdOn}" title="#{bundleExpense.CreateExpensesTitle_createdOn}" required="true" requiredMessage="#{bundleExpense.CreateExpensesRequiredMessage_createdOn}" showOn="button" />
+                        <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_createdBy}" for="createdBy" />
+                        <p:inputText id="createdBy" value="#{expensesController.selected.createdBy}" title="#{bundleExpense.CreateExpensesTitle_createdBy}" required="true" requiredMessage="#{bundleExpense.CreateExpensesRequiredMessage_createdBy}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{expensesController.create}" value="#{bundleExpense.Save}" update="display,:ExpensesListForm:datalist,:growl" oncomplete="handleSubmit(args,'ExpensesCreateDialog');"/>
                     <p:commandButton value="#{bundleExpense.Cancel}" onclick="ExpensesCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

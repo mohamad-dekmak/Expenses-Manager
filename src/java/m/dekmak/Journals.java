@@ -7,6 +7,7 @@ package m.dekmak;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +20,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -28,51 +31,62 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author mdekmak
  */
 @Entity
-@Table(name = "voucher_details")
+@Table(name = "journals")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "VoucherDetails.findAll", query = "SELECT v FROM VoucherDetails v"),
-    @NamedQuery(name = "VoucherDetails.findById", query = "SELECT v FROM VoucherDetails v WHERE v.id = :id"),
-    @NamedQuery(name = "VoucherDetails.findByDrCr", query = "SELECT v FROM VoucherDetails v WHERE v.drCr = :drCr"),
-    @NamedQuery(name = "VoucherDetails.findByAmount", query = "SELECT v FROM VoucherDetails v WHERE v.amount = :amount")})
-public class VoucherDetails implements Serializable {
+    @NamedQuery(name = "Journals.findAll", query = "SELECT j FROM Journals j"),
+    @NamedQuery(name = "Journals.findById", query = "SELECT j FROM Journals j WHERE j.id = :id"),
+    @NamedQuery(name = "Journals.findByAmount", query = "SELECT j FROM Journals j WHERE j.amount = :amount"),
+    @NamedQuery(name = "Journals.findByDated", query = "SELECT j FROM Journals j WHERE j.dated = :dated"),
+    @NamedQuery(name = "Journals.findByCreatedOn", query = "SELECT j FROM Journals j WHERE j.createdOn = :createdOn")})
+public class Journals implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "drCr")
-    private Character drCr;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Column(name = "amount")
     private BigDecimal amount;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "dated")
+    @Temporal(TemporalType.DATE)
+    private Date dated;
     @Lob
     @Size(max = 65535)
     @Column(name = "description")
     private String description;
-    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "createdOn")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdOn;
+    @JoinColumn(name = "from_account", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Accounts accountId;
-    @JoinColumn(name = "voucher_header_id", referencedColumnName = "id")
+    private Accounts fromAccount;
+    @JoinColumn(name = "to_account", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private VoucherHeaders voucherHeaderId;
+    private Accounts toAccount;
+    @JoinColumn(name = "createdBy", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Users createdBy;
 
-    public VoucherDetails() {
+    public Journals() {
     }
 
-    public VoucherDetails(Integer id) {
+    public Journals(Integer id) {
         this.id = id;
     }
 
-    public VoucherDetails(Integer id, Character drCr, BigDecimal amount) {
+    public Journals(Integer id, BigDecimal amount, Date dated, Date createdOn) {
         this.id = id;
-        this.drCr = drCr;
         this.amount = amount;
+        this.dated = dated;
+        this.createdOn = createdOn;
     }
 
     public Integer getId() {
@@ -83,20 +97,20 @@ public class VoucherDetails implements Serializable {
         this.id = id;
     }
 
-    public Character getDrCr() {
-        return drCr;
-    }
-
-    public void setDrCr(Character drCr) {
-        this.drCr = drCr;
-    }
-
     public BigDecimal getAmount() {
         return amount;
     }
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public Date getDated() {
+        return dated;
+    }
+
+    public void setDated(Date dated) {
+        this.dated = dated;
     }
 
     public String getDescription() {
@@ -107,20 +121,36 @@ public class VoucherDetails implements Serializable {
         this.description = description;
     }
 
-    public Accounts getAccountId() {
-        return accountId;
+    public Date getCreatedOn() {
+        return createdOn;
     }
 
-    public void setAccountId(Accounts accountId) {
-        this.accountId = accountId;
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
     }
 
-    public VoucherHeaders getVoucherHeaderId() {
-        return voucherHeaderId;
+    public Accounts getFromAccount() {
+        return fromAccount;
     }
 
-    public void setVoucherHeaderId(VoucherHeaders voucherHeaderId) {
-        this.voucherHeaderId = voucherHeaderId;
+    public void setFromAccount(Accounts fromAccount) {
+        this.fromAccount = fromAccount;
+    }
+
+    public Accounts getToAccount() {
+        return toAccount;
+    }
+
+    public void setToAccount(Accounts toAccount) {
+        this.toAccount = toAccount;
+    }
+
+    public Users getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Users createdBy) {
+        this.createdBy = createdBy;
     }
 
     @Override
@@ -133,10 +163,10 @@ public class VoucherDetails implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof VoucherDetails)) {
+        if (!(object instanceof Journals)) {
             return false;
         }
-        VoucherDetails other = (VoucherDetails) object;
+        Journals other = (Journals) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -145,7 +175,7 @@ public class VoucherDetails implements Serializable {
 
     @Override
     public String toString() {
-        return "m.dekmak.VoucherDetails[ id=" + id + " ]";
+        return "m.dekmak.Journals[ id=" + id + " ]";
     }
     
 }

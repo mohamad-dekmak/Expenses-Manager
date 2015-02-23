@@ -6,7 +6,9 @@
 package m.dekmak;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,10 +19,12 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,8 +37,16 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Accounts.findAll", query = "SELECT a FROM Accounts a"),
     @NamedQuery(name = "Accounts.findById", query = "SELECT a FROM Accounts a WHERE a.id = :id"),
     @NamedQuery(name = "Accounts.findByName", query = "SELECT a FROM Accounts a WHERE a.name = :name"),
-    @NamedQuery(name = "Accounts.findGroupAsset", query = "SELECT a FROM Accounts a WHERE a.accountTypeId IN ('1')")})
+    @NamedQuery(name = "Accounts.findByAccountTypeName", query = "SELECT a FROM Accounts a WHERE a.accountTypeId.name = :accountTypeName")})
 public class Accounts implements Serializable {
+    @OneToMany(mappedBy = "accountId")
+    private Collection<ExpenseCategories> expenseCategoriesCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "paidThrough")
+    private Collection<Expenses> expensesCollection1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fromAccount")
+    private Collection<Journals> journalsCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "toAccount")
+    private Collection<Journals> journalsCollection1;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -132,6 +144,42 @@ public class Accounts implements Serializable {
     @Override
     public String toString() {
         return name;
+    }
+
+    @XmlTransient
+    public Collection<Journals> getJournalsCollection() {
+        return journalsCollection;
+    }
+
+    public void setJournalsCollection(Collection<Journals> journalsCollection) {
+        this.journalsCollection = journalsCollection;
+    }
+
+    @XmlTransient
+    public Collection<Journals> getJournalsCollection1() {
+        return journalsCollection1;
+    }
+
+    public void setJournalsCollection1(Collection<Journals> journalsCollection1) {
+        this.journalsCollection1 = journalsCollection1;
+    }
+
+    @XmlTransient
+    public Collection<ExpenseCategories> getExpenseCategoriesCollection() {
+        return expenseCategoriesCollection;
+    }
+
+    public void setExpenseCategoriesCollection(Collection<ExpenseCategories> expenseCategoriesCollection) {
+        this.expenseCategoriesCollection = expenseCategoriesCollection;
+    }
+
+    @XmlTransient
+    public Collection<Expenses> getExpensesCollection1() {
+        return expensesCollection1;
+    }
+
+    public void setExpensesCollection1(Collection<Expenses> expensesCollection1) {
+        this.expensesCollection1 = expensesCollection1;
     }
     
 }

@@ -5,7 +5,6 @@
  */
 package m.dekmak;
 
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,8 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author mdekmak
  */
 @Stateless
-public class AccountsFacade extends AbstractFacade<Accounts> {
-
+public class JournalsFacade extends AbstractFacade<Journals> {
     @PersistenceContext(unitName = "ExpensesManagerPU")
     private EntityManager em;
 
@@ -25,13 +23,8 @@ public class AccountsFacade extends AbstractFacade<Accounts> {
         return em;
     }
 
-    public AccountsFacade() {
-        super(Accounts.class);
+    public JournalsFacade() {
+        super(Journals.class);
     }
-
-    public List<Accounts> getAccountsAssets() {
-        List<Accounts> Assets;
-        Assets = em.createNamedQuery("Accounts.findByAccountTypeName").setParameter("accountTypeName", "Asset / Cash").getResultList();
-        return Assets;
-    }
+    
 }

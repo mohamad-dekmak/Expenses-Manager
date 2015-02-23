@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="JournalsEditDlg" widgetVar="JournalsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleJournals.EditJournalsTitle}">
+            <h:form id="JournalsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{journalsController.selected != null}">
+                        <p:outputLabel value="#{bundleJournals.EditJournalsLabel_fromAccount}" for="fromAccount" />
+                        <p:selectOneMenu id="fromAccount" value="#{journalsController.selected.fromAccount}" required="true" requiredMessage="#{bundleJournals.EditJournalsRequiredMessage_fromAccount}">
+                            <f:selectItem itemLabel="#{bundleJournals.SelectOneMessage}"/>
+                            <f:selectItems value="#{accountsController.paidThroughItems}"
+                                           var="fromAccountItem"
+                                           itemValue="#{fromAccountItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleJournals.EditJournalsLabel_toAccount}" for="toAccount" />
+                        <p:selectOneMenu id="toAccount" value="#{journalsController.selected.toAccount}" required="true" requiredMessage="#{bundleJournals.EditJournalsRequiredMessage_toAccount}">
+                            <f:selectItem itemLabel="#{bundleJournals.SelectOneMessage}"/>
+                            <f:selectItems value="#{accountsController.paidThroughItems}"
+                                           var="toAccountItem"
+                                           itemValue="#{toAccountItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundleJournals.EditJournalsLabel_amount}" for="amount" />
+                        <p:inputText id="amount" value="#{journalsController.selected.amount}" title="#{bundleJournals.EditJournalsTitle_amount}" required="true" requiredMessage="#{bundleJournals.EditJournalsRequiredMessage_amount}"/>
+                        <p:outputLabel value="#{bundleJournals.EditJournalsLabel_dated}" for="dated" />
+                        <p:calendar id="dated" pattern="yyyy-MM-dd" value="#{journalsController.selected.dated}" title="#{bundleJournals.EditJournalsTitle_dated}" required="true" requiredMessage="#{bundleJournals.EditJournalsRequiredMessage_dated}" showOn="button"/>
+                        <p:outputLabel value="#{bundleJournals.EditJournalsLabel_description}" for="description" />
+                        <p:inputTextarea rows="4" cols="30" id="description" value="#{journalsController.selected.description}" title="#{bundleJournals.EditJournalsTitle_description}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{journalsController.update}" value="#{bundleJournals.Save}" update="display,:JournalsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'JournalsEditDialog');"/>
+                    <p:commandButton value="#{bundleJournals.Cancel}" onclick="JournalsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

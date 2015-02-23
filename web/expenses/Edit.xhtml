@@ -14,6 +14,8 @@
                     <p:panelGrid columns="2" rendered="#{expensesController.selected != null}">
                         <p:outputLabel value="#{bundleExpense.EditExpensesLabel_amount}" for="amount" />
                         <p:inputText id="amount" value="#{expensesController.selected.amount}" title="#{bundleExpense.EditExpensesTitle_amount}" required="true" requiredMessage="#{bundleExpense.EditExpensesRequiredMessage_amount}"/>
+                        <p:outputLabel value="#{bundleExpense.EditExpensesLabel_dated}" for="dated" />
+                        <p:calendar id="dated" pattern="yyyy-MM-dd" value="#{expensesController.selected.dated}" title="#{bundleExpense.EditExpensesTitle_dated}" required="true" requiredMessage="#{bundleExpense.EditExpensesRequiredMessage_dated}" showOn="button" />
                         <p:outputLabel value="#{bundleExpense.EditExpensesLabel_expenseCategoryId}" for="expenseCategoryId" />
                         <p:selectOneMenu id="expenseCategoryId" value="#{expensesController.selected.expenseCategoryId}" required="true" requiredMessage="#{bundleExpense.EditExpensesRequiredMessage_expenseCategoryId}">
                             <f:selectItem itemLabel="#{bundleExpense.SelectOneMessage}"/>
@@ -24,7 +26,7 @@
                         <p:outputLabel value="#{bundleExpense.EditExpensesLabel_paidThrough}" for="paidThrough" />
                         <p:selectOneMenu id="paidThrough" value="#{expensesController.selected.paidThrough}" required="true" requiredMessage="#{bundleExpense.EditExpensesRequiredMessage_paidThrough}">
                             <f:selectItem itemLabel="#{bundleExpense.SelectOneMessage}"/>
-                            <f:selectItems value="#{accountsController.itemsAvailableSelectOne}"
+                            <f:selectItems value="#{accountsController.paidThroughItems}"
                                            var="paidThroughItem"
                                            itemValue="#{paidThroughItem}"/>
                         </p:selectOneMenu>

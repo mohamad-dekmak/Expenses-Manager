@@ -114,6 +114,11 @@ public class ExpenseCategoriesController implements Serializable {
     public List<ExpenseCategories> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+    
+    public String getCategoryByAccount() {
+        return "List.xhtml?" + getFacade().getCategoryByName();
+//        return getFacade().getCategoryByName();
+    }
 
     @FacesConverter(forClass = ExpenseCategories.class)
     public static class ExpenseCategoriesControllerConverter implements Converter {

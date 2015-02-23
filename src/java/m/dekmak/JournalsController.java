@@ -17,23 +17,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "accountsController")
+@ManagedBean(name = "journalsController")
 @SessionScoped
-public class AccountsController implements Serializable {
+public class JournalsController implements Serializable {
 
     @EJB
-    private m.dekmak.AccountsFacade ejbFacade;
-    private List<Accounts> items = null;
-    private Accounts selected;
+    private m.dekmak.JournalsFacade ejbFacade;
+    private List<Journals> items = null;
+    private Journals selected;
 
-    public AccountsController() {
+    public JournalsController() {
     }
 
-    public Accounts getSelected() {
+    public Journals getSelected() {
         return selected;
     }
 
-    public void setSelected(Accounts selected) {
+    public void setSelected(Journals selected) {
         this.selected = selected;
     }
 
@@ -43,36 +43,36 @@ public class AccountsController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private AccountsFacade getFacade() {
+    private JournalsFacade getFacade() {
         return ejbFacade;
     }
 
-    public Accounts prepareCreate() {
-        selected = new Accounts();
+    public Journals prepareCreate() {
+        selected = new Journals();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/BundleAccounts").getString("AccountsCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/BundleJournals").getString("JournalsCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/BundleAccounts").getString("AccountsUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/BundleJournals").getString("JournalsUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/BundleAccounts").getString("AccountsDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/BundleJournals").getString("JournalsDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Accounts> getItems() {
+    public List<Journals> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -98,37 +98,33 @@ public class AccountsController implements Serializable {
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);
                 } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleAccounts").getString("PersistenceErrorOccured"));
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleJournals").getString("PersistenceErrorOccured"));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleAccounts").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/BundleJournals").getString("PersistenceErrorOccured"));
             }
         }
     }
 
-    public List<Accounts> getItemsAvailableSelectMany() {
+    public List<Journals> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Accounts> getItemsAvailableSelectOne() {
+    public List<Journals> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
-    
-    public List<Accounts> getPaidThroughItems() {
-        return getFacade().getAccountsAssets();
-    }
-    
-    @FacesConverter(forClass = Accounts.class)
-    public static class AccountsControllerConverter implements Converter {
+
+    @FacesConverter(forClass = Journals.class)
+    public static class JournalsControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            AccountsController controller = (AccountsController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "accountsController");
+            JournalsController controller = (JournalsController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "journalsController");
             return controller.getFacade().find(getKey(value));
         }
 
@@ -149,11 +145,11 @@ public class AccountsController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Accounts) {
-                Accounts o = (Accounts) object;
+            if (object instanceof Journals) {
+                Journals o = (Journals) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Accounts.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Journals.class.getName()});
                 return null;
             }
         }

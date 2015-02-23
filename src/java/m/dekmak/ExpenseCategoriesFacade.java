@@ -5,6 +5,7 @@
  */
 package m.dekmak;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +26,12 @@ public class ExpenseCategoriesFacade extends AbstractFacade<ExpenseCategories> {
 
     public ExpenseCategoriesFacade() {
         super(ExpenseCategories.class);
+    }
+
+    public List<ExpenseCategories> getCategoryByName() {
+        List<ExpenseCategories> ExpCat;
+        ExpCat = em.createNamedQuery("ExpenseCategories.findByName").setParameter("name", "Rent").getResultList();
+        return ExpCat;
     }
     
 }

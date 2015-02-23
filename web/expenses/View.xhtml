@@ -14,10 +14,12 @@
                     <p:panelGrid columns="2" rendered="#{expensesController.selected != null}">
                         <h:outputText value="#{bundleExpense.ViewExpensesLabel_amount}"/>
                         <h:outputText value="#{expensesController.selected.amount}" title="#{bundleExpense.ViewExpensesTitle_amount}"/>
+                        <h:outputText value="#{bundleExpense.ViewExpensesLabel_dated}" />
+                        <h:outputText value="#{expensesController.selected.dated}" title="#{bundleExpense.ViewExpensesTitle_dated}">
+                            <f:convertDateTime pattern="yyyy-MM-dd" />
+                        </h:outputText>
                         <h:outputText value="#{bundleExpense.ViewExpensesLabel_expenseCategoryId}"/>
                         <h:outputText value="#{expensesController.selected.expenseCategoryId.name}" title="#{bundleExpense.ViewExpensesTitle_expenseCategoryId}"/>
-                        <h:outputText value="#{bundleExpense.ViewExpensesLabel_expenseAccount}"/>
-                        <h:outputText value="#{expensesController.selected.expenseAccount.name}" title="#{bundleExpense.ViewExpensesTitle_expenseAccount}"/>
                         <h:outputText value="#{bundleExpense.ViewExpensesLabel_paidThrough}"/>
                         <h:outputText value="#{expensesController.selected.paidThrough.name}" title="#{bundleExpense.ViewExpensesTitle_paidThrough}"/>
                         <h:outputText value="#{bundleExpense.ViewExpensesLabel_description}"/>

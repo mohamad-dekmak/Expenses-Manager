@@ -7,7 +7,9 @@ package m.dekmak;
 
 import java.io.Serializable;
 import java.security.MessageDigest;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,10 +17,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,6 +39,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password"),
     @NamedQuery(name = "Users.findByGroupName", query = "SELECT u FROM Users u WHERE u.groupName = :groupName")})
 public class Users implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdBy")
+    private Collection<Expenses> expensesCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdBy")
+    private Collection<Journals> journalsCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -163,6 +171,24 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         return "m.dekmak.Users[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Journals> getJournalsCollection() {
+        return journalsCollection;
+    }
+
+    public void setJournalsCollection(Collection<Journals> journalsCollection) {
+        this.journalsCollection = journalsCollection;
+    }
+
+    @XmlTransient
+    public Collection<Expenses> getExpensesCollection() {
+        return expensesCollection;
+    }
+
+    public void setExpensesCollection(Collection<Expenses> expensesCollection) {
+        this.expensesCollection = expensesCollection;
     }
 
 }

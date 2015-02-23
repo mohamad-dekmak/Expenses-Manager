@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="JournalsViewDlg" widgetVar="JournalsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleJournals.ViewJournalsTitle}">
+            <h:form id="JournalsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{journalsController.selected != null}">
+                        <h:outputText value="#{bundleJournals.ViewJournalsLabel_fromAccount}"/>
+                        <h:outputText value="#{journalsController.selected.fromAccount.name}" title="#{bundleJournals.ViewJournalsTitle_fromAccount}"/>
+                        <h:outputText value="#{bundleJournals.ViewJournalsLabel_toAccount}"/>
+                        <h:outputText value="#{journalsController.selected.toAccount.name}" title="#{bundleJournals.ViewJournalsTitle_toAccount}"/>
+                        <h:outputText value="#{bundleJournals.ViewJournalsLabel_amount}"/>
+                        <h:outputText value="#{journalsController.selected.amount}" title="#{bundleJournals.ViewJournalsTitle_amount}"/>
+                        <h:outputText value="#{bundleJournals.ViewJournalsLabel_dated}"/>
+                        <h:outputText value="#{journalsController.selected.dated}" title="#{bundleJournals.ViewJournalsTitle_dated}">
+                            <f:convertDateTime pattern="yyyy-MM-dd" />
+                        </h:outputText>
+                        <h:outputText value="#{bundleJournals.ViewJournalsLabel_description}"/>
+                        <h:outputText value="#{journalsController.selected.description}" title="#{bundleJournals.ViewJournalsTitle_description}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundleJournals.Close}" onclick="JournalsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -7,6 +7,7 @@ package m.dekmak;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +20,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,34 +36,42 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Expenses.findAll", query = "SELECT e FROM Expenses e"),
     @NamedQuery(name = "Expenses.findById", query = "SELECT e FROM Expenses e WHERE e.id = :id"),
-    @NamedQuery(name = "Expenses.findByAmount", query = "SELECT e FROM Expenses e WHERE e.amount = :amount")})
+    @NamedQuery(name = "Expenses.findByAmount", query = "SELECT e FROM Expenses e WHERE e.amount = :amount"),
+    @NamedQuery(name = "Expenses.findByDated", query = "SELECT e FROM Expenses e WHERE e.dated = :dated"),
+    @NamedQuery(name = "Expenses.findByCreatedOn", query = "SELECT e FROM Expenses e WHERE e.createdOn = :createdOn")})
 public class Expenses implements Serializable {
-    @JoinColumn(name = "voucher_header_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private VoucherHeaders voucherHeaderId;
-    @Lob
-    @Size(max = 65535)
-    @Column(name = "description")
-    private String description;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Column(name = "amount")
     private BigDecimal amount;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "dated")
+    @Temporal(TemporalType.DATE)
+    private Date dated;
+    @Lob
+    @Size(max = 65535)
+    @Column(name = "description")
+    private String description;
+    @Column(name = "createdOn")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdOn;
     @JoinColumn(name = "expense_category_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private ExpenseCategories expenseCategoryId;
-    @JoinColumn(name = "expense_account", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Accounts expenseAccount;
     @JoinColumn(name = "paid_through", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Accounts paidThrough;
+    @JoinColumn(name = "createdBy", referencedColumnName = "id")
+    @ManyToOne
+    private Users createdBy;
 
     public Expenses() {
     }
@@ -69,9 +80,10 @@ public class Expenses implements Serializable {
         this.id = id;
     }
 
-    public Expenses(Integer id, BigDecimal amount) {
+    public Expenses(Integer id, BigDecimal amount, Date dated) {
         this.id = id;
         this.amount = amount;
+        this.dated = dated;
     }
 
     public Integer getId() {
@@ -90,6 +102,30 @@ public class Expenses implements Serializable {
         this.amount = amount;
     }
 
+    public Date getDated() {
+        return dated;
+    }
+
+    public void setDated(Date dated) {
+        this.dated = dated;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+    }
+
     public ExpenseCategories getExpenseCategoryId() {
         return expenseCategoryId;
     }
@@ -98,20 +134,20 @@ public class Expenses implements Serializable {
         this.expenseCategoryId = expenseCategoryId;
     }
 
-    public Accounts getExpenseAccount() {
-        return expenseAccount;
-    }
-
-    public void setExpenseAccount(Accounts expenseAccount) {
-        this.expenseAccount = expenseAccount;
-    }
-
     public Accounts getPaidThrough() {
         return paidThrough;
     }
 
     public void setPaidThrough(Accounts paidThrough) {
         this.paidThrough = paidThrough;
+    }
+
+    public Users getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Users createdBy) {
+        this.createdBy = createdBy;
     }
 
     @Override
@@ -136,23 +172,7 @@ public class Expenses implements Serializable {
 
     @Override
     public String toString() {
-        return description + " amount: " + amount;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public VoucherHeaders getVoucherHeaderId() {
-        return voucherHeaderId;
-    }
-
-    public void setVoucherHeaderId(VoucherHeaders voucherHeaderId) {
-        this.voucherHeaderId = voucherHeaderId;
+        return "m.dekmak.Expenses[ id=" + id + " ]";
     }
     
 }
