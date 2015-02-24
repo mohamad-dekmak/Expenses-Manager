@@ -29,28 +29,28 @@
                         <h:link outcome="/expenseCategories/List" value="Expenses Categories" />
                     </p:panel>
                     <p:panel header="Accounts" style="width: 48%; float: left;">
-                        <h:link outcome="/accounts/List" value="Chart of Accounts" />
+                        <h:link outcome="/accounts/List" value="Manage Accounts" />
                         <br />
                         <br />
                         <h:link outcome="/accountTypes/List" value="Account Types" />
                     </p:panel>
                     <p:panel header="Journals" style="width: 50%; float: right;">
-                        <br />
                         <h:link outcome="/journals/List" value="Feed Petty Cash" />
                         <br />
                         <br />
-                    </p:panel>
-                    <p:panel header="Currencies" style="width: 48%; float: left;">
-                        <br />
                         <h:link outcome="/countries/List" value="Currencies" />
-                        <br />
-                        <br />
                     </p:panel>
-                    <p:panel header="Reports" style="width: 50%; float: right;">
-                        <h:link outcome="/expenses/List" value="Expenses per Category" />
+                    <p:panel header="Accounts Reports" style="width: 48%; float: left;">
+                        <h:link outcome="/reports/chart_of_accounts.xhtml" value="Chart of Accounts" />
                         <br />
                         <br />
-                        <h:link outcome="/expenses/List" value="Expenses per User" />
+                        <h:link outcome="/expenses/List" value="Account Statement" />
+                    </p:panel>
+                    <p:panel header="Expenses Reports" style="width: 50%; float: right;">
+                        <h:link outcome="/expenses/List" value="Statement of Expenses" />
+                        <br />
+                        <br />
+                        <h:link outcome="/expenses/List" value="Expenses per Category / User" />
                     </p:panel>
                 </p:panel>
             </center>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="chart_of_accounts" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9f551367-2db7-4e4a-b55a-5fb70b8b6133">
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     chart_of_accounts.`id` AS chart_of_accounts_id,
+     chart_of_accounts.`accountName` AS chart_of_accounts_accountName,
+     chart_of_accounts.`currency` AS chart_of_accounts_currency,
+     chart_of_accounts.`accountType` AS chart_of_accounts_accountType,
+     chart_of_accounts.`description` AS chart_of_accounts_description,
+     chart_of_accounts.`totalDebit` AS chart_of_accounts_totalDebit,
+     chart_of_accounts.`totalCredit` AS chart_of_accounts_totalCredit,
+     chart_of_accounts.`balance` AS chart_of_accounts_balance
+FROM
+     `chart_of_accounts` chart_of_accounts]]>
+	</queryString>
+	<field name="chart_of_accounts_id" class="java.lang.Integer"/>
+	<field name="chart_of_accounts_accountName" class="java.lang.String"/>
+	<field name="chart_of_accounts_currency" class="java.lang.String"/>
+	<field name="chart_of_accounts_accountType" class="java.lang.String"/>
+	<field name="chart_of_accounts_description" class="java.lang.String"/>
+	<field name="chart_of_accounts_totalDebit" class="java.math.BigDecimal"/>
+	<field name="chart_of_accounts_totalCredit" class="java.math.BigDecimal"/>
+	<field name="chart_of_accounts_balance" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

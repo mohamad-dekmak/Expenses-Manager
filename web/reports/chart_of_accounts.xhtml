@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Chart Of Accounts</title>
+    </h:head>
+    <h:body>
+        <center>
+            <h:link outcome="/index" value="Back to Homepage" style="float: left;" />
+            <h:link outcome="/logout.jsp" value="Logout" style="float: right;" />
+            <br />
+            <br />
+            <p:panel header="Chart of Accounts" style="height: 450px;">
+                <br />
+                <h:form>
+                    <h:outputLabel>Export to: </h:outputLabel>
+                    <h:commandButton value="PDF" actionListener="#{chartOfAccountsController.PDF}"/>
+                    <h:commandButton value="Docx" actionListener="#{chartOfAccountsController.DOCX}"/>
+                    <h:commandButton value="Xlsx" actionListener="#{chartOfAccountsController.XLSX}"/>
+                    <h:commandButton value="Odt" actionListener="#{chartOfAccountsController.ODT}"/>
+                    <h:commandButton value="Ppt" actionListener="#{chartOfAccountsController.PPT}"/>
+                </h:form>
+                <br />
+                <h:dataTable border="1" value="#{chartOfAccountsController.listOfChartOfAccounts}" var="chartOfAccounts">
+                    <h:column>
+                        <f:facet name="header">
+                            Account Name
+                        </f:facet>
+                        #{chartOfAccounts.accountName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Currency
+                        </f:facet>
+                        #{chartOfAccounts.currency}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Account Type
+                        </f:facet>
+                        #{chartOfAccounts.accountType}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Description
+                        </f:facet>
+                        #{chartOfAccounts.description}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Total Debit
+                        </f:facet>
+                        #{chartOfAccounts.totalDebit}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Total Credit
+                        </f:facet>
+                        #{chartOfAccounts.totalCredit}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Balance
+                        </f:facet>
+                        #{chartOfAccounts.balance}
+                    </h:column>
+                </h:dataTable>
+            </p:panel>
+        </center>
+    </h:body>
+</html>
+
