@@ -44,7 +44,7 @@ public class ChartOfAccounts implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
-    private int id;
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -133,6 +133,31 @@ public class ChartOfAccounts implements Serializable {
 
     public void setTotalCredit(BigDecimal totalCredit) {
         this.totalCredit = totalCredit;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ChartOfAccounts)) {
+            return false;
+        }
+        ChartOfAccounts other = (ChartOfAccounts) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return accountName;
     }
     
 }

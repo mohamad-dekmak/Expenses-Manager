@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0ffce3e6-2a61-4a77-aa0e-1e4c4d84598f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="id" class="java.lang.String"/>
+	<field name="expenseCategory" class="java.lang.String"/>
+	<field name="expenseCategoryParent" class="java.lang.String"/>
+	<field name="dated" class="java.lang.String"/>
+	<field name="expenseAccountName" class="java.lang.String"/>
+	<field name="paidThroughAccountName" class="java.lang.String"/>
+	<field name="amount" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="22" y="16" width="215" height="49" uuid="954d12e6-deb0-4fa8-b685-49ec964b9a63"/>
+				<text><![CDATA[Statement of Expenses Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="0" width="39" height="20" uuid="e84c00f4-4523-47f2-a364-752687db6af7"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="64" y="2" width="62" height="20" uuid="19b66ac1-78d3-4dab-866a-da0b11b0124e"/>
+				<text><![CDATA[Expense Category]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="139" y="2" width="100" height="20" uuid="55a6e71d-5db9-48a1-9378-3515d262b2a4"/>
+				<text><![CDATA[Exp Cat Parent]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="225" y="2" width="64" height="20" uuid="55a6e71d-5db9-48a1-9378-3515d262b2a4"/>
+				<text><![CDATA[Dated]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="2" width="92" height="20" uuid="55a6e71d-5db9-48a1-9378-3515d262b2a4"/>
+				<text><![CDATA[Exp Account Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="2" width="100" height="20" uuid="55a6e71d-5db9-48a1-9378-3515d262b2a4"/>
+				<text><![CDATA[Paid Through]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="483" y="2" width="100" height="20" uuid="55a6e71d-5db9-48a1-9378-3515d262b2a4"/>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="27" y="0" width="50" height="20" uuid="05dc4808-1735-477b-87eb-c94776e7c379"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="0" width="72" height="20" uuid="9883313c-c232-4104-9509-e7b91ba0f522"/>
+				<textFieldExpression><![CDATA[$F{expenseCategory}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="0" width="100" height="20" uuid="341eacdb-95c7-4bc8-96c3-84f875cf060d"/>
+				<textFieldExpression><![CDATA[$F{expenseCategoryParent}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="225" y="0" width="38" height="20" uuid="341eacdb-95c7-4bc8-96c3-84f875cf060d"/>
+				<textFieldExpression><![CDATA[$F{dated}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="284" y="0" width="85" height="20" uuid="341eacdb-95c7-4bc8-96c3-84f875cf060d"/>
+				<textFieldExpression><![CDATA[$F{expenseAccountName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="379" y="0" width="100" height="20" uuid="341eacdb-95c7-4bc8-96c3-84f875cf060d"/>
+				<textFieldExpression><![CDATA[$F{paidThroughAccountName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="485" y="0" width="100" height="20" uuid="341eacdb-95c7-4bc8-96c3-84f875cf060d"/>
+				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="216" y="0" width="100" height="20" uuid="d7d0ccd4-5bfe-46db-bcee-7106797801d6"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="0" width="80" height="20" uuid="73b043fa-ce16-444a-a235-16e894b7958d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="516" y="0" width="40" height="20" uuid="2fc99cdb-0aa7-4e71-84ab-b131a8a2caa9"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="101" splitType="Stretch"/>
+	</summary>
+</jasperReport>

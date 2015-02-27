@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Account Statement</title>
+    </h:head>
+    <h:body>
+        <center>
+            <h:link outcome="/index" value="Back to Homepage" style="float: left;" />
+            <h:link outcome="/logout.jsp" value="Logout" style="float: right;" />
+            <br />
+            <br />
+            <p:panel header="Account Statement" style="height: 450px;">
+                <br />
+                <h:form>
+                    <h:outputLabel>Export to: </h:outputLabel>
+                    <h:commandButton value="PDF" actionListener="#{accountStatementController.PDF}"/>
+                    <h:commandButton value="Docx" actionListener="#{accountStatementController.DOCX}"/>
+                    <h:commandButton value="Xlsx" actionListener="#{accountStatementController.XLSX}"/>
+                    <h:commandButton value="Odt" actionListener="#{accountStatementController.ODT}"/>
+                    <h:commandButton value="Ppt" actionListener="#{accountStatementController.PPT}"/>
+                </h:form>
+                <br />
+                <h:dataTable border="1" value="#{accountStatementController.listOfAccountStatement}" var="accountStatement">
+                    <h:column>
+                        <f:facet name="header">
+                            Account Name
+                        </f:facet>
+                        #{accountStatement.accountName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Currency
+                        </f:facet>
+                        #{accountStatement.currency}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Account Type
+                        </f:facet>
+                        #{accountStatement.accountType}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Debit
+                        </f:facet>
+                        #{accountStatement.debit}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Credit
+                        </f:facet>
+                        #{accountStatement.credit}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Voucher Type
+                        </f:facet>
+                        #{accountStatement.voucherType}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Reference Number
+                        </f:facet>
+                        #{accountStatement.refNum}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Dated
+                        </f:facet>
+                        <h:outputText value=" #{accountStatement.dated}">
+                            <f:convertDateTime pattern="yyyy-MM-dd" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Account Description
+                        </f:facet>
+                        #{accountStatement.accountDescription}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Voucher Description
+                        </f:facet>
+                        #{accountStatement.voucherDescription}
+                    </h:column>
+                </h:dataTable>
+            </p:panel>
+        </center>
+    </h:body>
+</html>
+

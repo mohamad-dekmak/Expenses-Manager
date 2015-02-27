@@ -41,7 +41,7 @@ public class ChartOfAccountsController {
 
     public void init() throws JRException {
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(listOfChartOfAccounts);
-        String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reports/chart_of_accounts.jasper");
+        String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reports/chart_of_accounts/report.jasper");
         jasperPrint = JasperFillManager.fillReport(reportPath, new HashMap(), beanCollectionDataSource);
     }
 

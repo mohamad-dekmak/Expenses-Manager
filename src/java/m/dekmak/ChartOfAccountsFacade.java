@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class ChartOfAccountsFacade extends AbstractFacade<ChartOfAccounts> {
-    @PersistenceContext(unitName = "ExpensesManagerPU")
+    @PersistenceContext(unitName = "JasperReportsPU")
     private EntityManager em;
 
     protected EntityManager getEntityManager() {
