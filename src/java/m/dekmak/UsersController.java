@@ -114,6 +114,10 @@ public class UsersController implements Serializable {
     public List<Users> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+    
+    public List<Users> getUsersItems() {
+        return getFacade().getUsersList();
+    }
 
     @FacesConverter(forClass = Users.class)
     public static class UsersControllerConverter implements Converter {

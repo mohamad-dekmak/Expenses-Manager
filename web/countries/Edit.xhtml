@@ -8,27 +8,25 @@
 
     <ui:composition>
 
-        <p:dialog id="CountriesEditDlg" widgetVar="CountriesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleAccouts.EditCountriesTitle}">
+        <p:dialog id="CountriesEditDlg" widgetVar="CountriesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleCountries.EditCountriesTitle}">
             <h:form id="CountriesEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{countriesController.selected != null}">
-                        <p:outputLabel value="#{bundleAccouts.EditCountriesLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{countriesController.selected.id}" title="#{bundleAccouts.EditCountriesTitle_id}" required="true" requiredMessage="#{bundleAccouts.EditCountriesRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundleAccouts.EditCountriesLabel_countryCode}" for="countryCode" />
-                        <p:inputText id="countryCode" value="#{countriesController.selected.countryCode}" title="#{bundleAccouts.EditCountriesTitle_countryCode}" required="true" requiredMessage="#{bundleAccouts.EditCountriesRequiredMessage_countryCode}"/>
-                        <p:outputLabel value="#{bundleAccouts.EditCountriesLabel_countryName}" for="countryName" />
-                        <p:inputText id="countryName" value="#{countriesController.selected.countryName}" title="#{bundleAccouts.EditCountriesTitle_countryName}" required="true" requiredMessage="#{bundleAccouts.EditCountriesRequiredMessage_countryName}"/>
-                        <p:outputLabel value="#{bundleAccouts.EditCountriesLabel_currencyCode}" for="currencyCode" />
-                        <p:inputText id="currencyCode" value="#{countriesController.selected.currencyCode}" title="#{bundleAccouts.EditCountriesTitle_currencyCode}" />
-                        <p:outputLabel value="#{bundleAccouts.EditCountriesLabel_currencyName}" for="currencyName" />
-                        <p:inputText id="currencyName" value="#{countriesController.selected.currencyName}" title="#{bundleAccouts.EditCountriesTitle_currencyName}" />
-                        <p:outputLabel value="#{bundleAccouts.EditCountriesLabel_isoNumeric}" for="isoNumeric" />
-                        <p:inputText id="isoNumeric" value="#{countriesController.selected.isoNumeric}" title="#{bundleAccouts.EditCountriesTitle_isoNumeric}" />
-                        <p:outputLabel value="#{bundleAccouts.EditCountriesLabel_languages}" for="languages" />
-                        <p:inputText id="languages" value="#{countriesController.selected.languages}" title="#{bundleAccouts.EditCountriesTitle_languages}" />
+                        <p:outputLabel value="#{bundleCountries.EditCountriesLabel_countryCode}" for="countryCode" />
+                        <p:inputText id="countryCode" value="#{countriesController.selected.countryCode}" title="#{bundleCountries.EditCountriesTitle_countryCode}" required="true" requiredMessage="#{bundleCountries.EditCountriesRequiredMessage_countryCode}"/>
+                        <p:outputLabel value="#{bundleCountries.EditCountriesLabel_countryName}" for="countryName" />
+                        <p:inputText id="countryName" value="#{countriesController.selected.countryName}" title="#{bundleCountries.EditCountriesTitle_countryName}" required="true" requiredMessage="#{bundleCountries.EditCountriesRequiredMessage_countryName}"/>
+                        <p:outputLabel value="#{bundleCountries.EditCountriesLabel_currencyCode}" for="currencyCode" />
+                        <p:inputText id="currencyCode" value="#{countriesController.selected.currencyCode}" title="#{bundleCountries.EditCountriesTitle_currencyCode}" />
+                        <p:outputLabel value="#{bundleCountries.EditCountriesLabel_currencyName}" for="currencyName" />
+                        <p:inputText id="currencyName" value="#{countriesController.selected.currencyName}" title="#{bundleCountries.EditCountriesTitle_currencyName}" />
+                        <p:outputLabel value="#{bundleCountries.EditCountriesLabel_isoNumeric}" for="isoNumeric" />
+                        <p:inputText id="isoNumeric" value="#{countriesController.selected.isoNumeric}" title="#{bundleCountries.EditCountriesTitle_isoNumeric}" />
+                        <p:outputLabel value="#{bundleCountries.EditCountriesLabel_languages}" for="languages" />
+                        <p:inputText id="languages" value="#{countriesController.selected.languages}" title="#{bundleCountries.EditCountriesTitle_languages}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{countriesController.update}" value="#{bundleAccouts.Save}" update="display,:CountriesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CountriesEditDialog');"/>
-                    <p:commandButton value="#{bundleAccouts.Cancel}" onclick="CountriesEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{countriesController.update}" value="#{bundleCountries.Save}" update="display,:CountriesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CountriesEditDialog');"/>
+                    <p:commandButton value="#{bundleCountries.Cancel}" onclick="CountriesEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

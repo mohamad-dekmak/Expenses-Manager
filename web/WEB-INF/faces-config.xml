@@ -13,10 +13,6 @@
             <var>bundle</var>
         </resource-bundle>
         <resource-bundle>
-            <base-name>/BundleAccouts</base-name>
-            <var>bundleAccouts</var>
-        </resource-bundle>
-        <resource-bundle>
             <base-name>/BundleExpensesCategories</base-name>
             <var>bundleExpensesCategories</var>
         </resource-bundle>
@@ -41,6 +37,10 @@
             <var>bundleAccounts</var>
         </resource-bundle>
         <resource-bundle>
+            <base-name>/BundleAccounts</base-name>
+            <var>bundleAccounts</var>
+        </resource-bundle>
+        <resource-bundle>
             <base-name>/BundleJournals</base-name>
             <var>bundleJournals</var>
         </resource-bundle>
@@ -49,5 +49,9 @@
             <managed-bean-class>java.util.Date</managed-bean-class>
             <managed-bean-scope>request</managed-bean-scope>
         </managed-bean>
+        <resource-bundle>
+            <base-name>/BundleCountries</base-name>
+            <var>bundleCountries</var>
+        </resource-bundle>
     </application>
 </faces-config>

@@ -170,7 +170,7 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "m.dekmak.Users[ id=" + id + " ]";
+        return name;
     }
 
     @XmlTransient

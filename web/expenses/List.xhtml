@@ -54,6 +54,12 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundleExpense.ListExpensesTitle_createdBy}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdBy.name}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundleExpense.ListExpensesTitle_description}"/>
                             </f:facet>
                             <h:outputText value="#{item.description}"/>

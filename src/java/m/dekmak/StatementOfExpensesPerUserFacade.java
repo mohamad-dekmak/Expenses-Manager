@@ -5,7 +5,6 @@
  */
 package m.dekmak;
 
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,23 +14,16 @@ import javax.persistence.PersistenceContext;
  * @author mdekmak
  */
 @Stateless
-public class UsersFacade extends AbstractFacade<Users> {
-    @PersistenceContext(unitName = "ExpensesManagerPU")
+public class StatementOfExpensesPerUserFacade extends AbstractFacade<StatementOfExpensesPerUser> {
+    @PersistenceContext(unitName = "JasperReportsPU")
     private EntityManager em;
 
-    @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
-    public UsersFacade() {
-        super(Users.class);
-    }
-
-    public List<Users> getUsersList() {
-        List<Users> usersList;
-        usersList = em.createNamedQuery("Users.findAll").getResultList();
-        return usersList;
+    public StatementOfExpensesPerUserFacade() {
+        super(StatementOfExpensesPerUser.class);
     }
     
 }

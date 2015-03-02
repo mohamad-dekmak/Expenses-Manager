@@ -34,7 +34,11 @@
                         <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_createdOn}" for="createdOn" />
                         <p:calendar id="createdOn" pattern="yyyy-MM-dd" value="#{expensesController.selected.createdOn}" title="#{bundleExpense.CreateExpensesTitle_createdOn}" required="true" requiredMessage="#{bundleExpense.CreateExpensesRequiredMessage_createdOn}" showOn="button" />
                         <p:outputLabel value="#{bundleExpense.CreateExpensesLabel_createdBy}" for="createdBy" />
-                        <p:inputText id="createdBy" value="#{expensesController.selected.createdBy}" title="#{bundleExpense.CreateExpensesTitle_createdBy}" required="true" requiredMessage="#{bundleExpense.CreateExpensesRequiredMessage_createdBy}"/>
+                        <p:selectOneMenu id="createdBy" value="#{expensesController.selected.createdBy}" required="true" requiredMessage="#{bundleExpense.EditExpensesRequiredMessage_createdBy}">
+                            <f:selectItems value="#{usersController.usersItems}"
+                                           var="createdByItem"
+                                           itemValue="#{createdByItem}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{expensesController.create}" value="#{bundleExpense.Save}" update="display,:ExpensesListForm:datalist,:growl" oncomplete="handleSubmit(args,'ExpensesCreateDialog');"/>
                     <p:commandButton value="#{bundleExpense.Cancel}" onclick="ExpensesCreateDialog.hide()"/>

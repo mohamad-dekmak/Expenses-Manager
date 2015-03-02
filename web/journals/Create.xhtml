@@ -34,10 +34,12 @@
                         <p:outputLabel value="#{bundleJournals.CreateJournalsLabel_createdOn}" for="dated1" />
                         <p:calendar id="dated1" pattern="yyyy-MM-dd" value="#{journalsController.selected.createdOn}" title="#{bundleJournals.EditJournalsTitle_createdOn}" required="true" requiredMessage="#{bundleJournals.EditJournalsRequiredMessage_createdOn}" showOn="button"/>
 
-                        <p:outputLabel value="#{bundleJournals.CreateJournalsLabel_createdBy}" for="amount2" />
-                        <p:inputText id="amount2" value="#{journalsController.selected.createdBy}" title="#{bundleJournals.CreateJournalsTitle_createdBy}" required="true" requiredMessage="#{bundleJournals.CreateJournalsRequiredMessage_createdBy}"/>
-
-
+                        <p:outputLabel value="#{bundleJournals.CreateJournalsLabel_createdBy}" for="createdBy" />
+                        <p:selectOneMenu id="createdBy" value="#{journalsController.selected.createdBy}" required="true" requiredMessage="#{bundleJournals.EditJournalsRequiredMessage_createdBy}">
+                            <f:selectItems value="#{usersController.usersItems}"
+                                           var="createdByItem"
+                                           itemValue="#{createdByItem}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{journalsController.create}" value="#{bundleJournals.Save}" update="display,:JournalsListForm:datalist,:growl" oncomplete="handleSubmit(args,'JournalsCreateDialog');"/>
                     <p:commandButton value="#{bundleJournals.Cancel}" onclick="JournalsCreateDialog.hide()"/>

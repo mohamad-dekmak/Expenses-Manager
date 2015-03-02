@@ -17,7 +17,7 @@
                         <p:outputLabel value="#{bundleExpensesCategories.EditExpenseCategoriesLabel_accountId}" for="accountId" />
                         <p:selectOneMenu id="accountId" value="#{expenseCategoriesController.selected.accountId}" >
                             <f:selectItem itemLabel="#{bundleExpensesCategories.SelectOneMessage}"/>
-                            <f:selectItems value="#{accountsController.itemsAvailableSelectOne}"
+                            <f:selectItems value="#{accountsController.expenseItems}"
                                            var="accountIdItem"
                                            itemValue="#{accountIdItem}"/>
                         </p:selectOneMenu>

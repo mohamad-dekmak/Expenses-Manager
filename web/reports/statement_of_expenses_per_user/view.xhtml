@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Statement of Expenses per User</title>
+    </h:head>
+    <h:body>
+        <center>
+            <h:link outcome="/index" value="Back to Homepage" style="float: left;" />
+            <h:link outcome="/logout.jsp" value="Logout" style="float: right;" />
+            <br />
+            <br />
+            <p:panel header="Statement of Expenses per User" style="height: 450px;">
+                <br />
+                <h:form>
+                    <h:outputLabel>Export to: </h:outputLabel>
+                    <h:commandButton value="PDF" actionListener="#{statementOfExpensesPerUserController.PDF}"/>
+                    <h:commandButton value="Docx" actionListener="#{statementOfExpensesPerUserController.DOCX}"/>
+                    <h:commandButton value="Xlsx" actionListener="#{statementOfExpensesPerUserController.XLSX}"/>
+                    <h:commandButton value="Odt" actionListener="#{statementOfExpensesPerUserController.ODT}"/>
+                    <h:commandButton value="Ppt" actionListener="#{statementOfExpensesPerUserController.PPT}"/>
+                </h:form>
+                <br />
+                <h:dataTable border="1" value="#{statementOfExpensesPerUserController.listOfStatementOfExpensesPerUser}" var="statementOfExpensesPerUser">
+                    <h:column>
+                        <f:facet name="header">
+                            id
+                        </f:facet>
+                        #{statementOfExpensesPerUser.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            User
+                        </f:facet>
+                        #{statementOfExpensesPerUser.user}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Amount
+                        </f:facet>
+                        #{statementOfExpensesPerUser.amount}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Dated
+                        </f:facet>
+                        #{statementOfExpensesPerUser.dated}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Expense Category
+                        </f:facet>
+                        #{statementOfExpensesPerUser.expenseCategory}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Expense Account Name
+                        </f:facet>
+                        #{statementOfExpensesPerUser.expenseAccountName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Currency
+                        </f:facet>
+                        #{statementOfExpensesPerUser.currency}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Paid Through Account Name
+                        </f:facet>
+                        #{statementOfExpensesPerUser.paidThroughAccountName}
+                    </h:column>
+                </h:dataTable>
+            </p:panel>
+        </center>
+    </h:body>
+</html>
+

@@ -34,4 +34,10 @@ public class AccountsFacade extends AbstractFacade<Accounts> {
         Assets = em.createNamedQuery("Accounts.findByAccountTypeName").setParameter("accountTypeName", "Asset / Cash").getResultList();
         return Assets;
     }
+    
+    public List<Accounts> getAccountsExpenses() {
+        List<Accounts> Expenses;
+        Expenses = em.createNamedQuery("Accounts.findByAccountTypeName").setParameter("accountTypeName", "Expense").getResultList();
+        return Expenses;
+    }
 }

@@ -8,24 +8,24 @@
 
     <ui:composition>
 
-        <p:dialog id="CountriesViewDlg" widgetVar="CountriesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleAccouts.ViewCountriesTitle}">
+        <p:dialog id="CountriesViewDlg" widgetVar="CountriesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundleCountries.ViewCountriesTitle}">
             <h:form id="CountriesViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{countriesController.selected != null}">
-                        <h:outputText value="#{bundleAccouts.ViewCountriesLabel_currencyCode}"/>
-                        <h:outputText value="#{countriesController.selected.currencyCode}" title="#{bundleAccouts.ViewCountriesTitle_currencyCode}"/>
-                        <h:outputText value="#{bundleAccouts.ViewCountriesLabel_countryName}"/>
-                        <h:outputText value="#{countriesController.selected.countryName}" title="#{bundleAccouts.ViewCountriesTitle_countryName}"/>
-                        <h:outputText value="#{bundleAccouts.ViewCountriesLabel_countryCode}"/>
-                        <h:outputText value="#{countriesController.selected.countryCode}" title="#{bundleAccouts.ViewCountriesTitle_countryCode}"/>
-                        <h:outputText value="#{bundleAccouts.ViewCountriesLabel_currencyName}"/>
-                        <h:outputText value="#{countriesController.selected.currencyName}" title="#{bundleAccouts.ViewCountriesTitle_currencyName}"/>
-                        <h:outputText value="#{bundleAccouts.ViewCountriesLabel_isoNumeric}"/>
-                        <h:outputText value="#{countriesController.selected.isoNumeric}" title="#{bundleAccouts.ViewCountriesTitle_isoNumeric}"/>
-                        <h:outputText value="#{bundleAccouts.ViewCountriesLabel_languages}"/>
-                        <h:outputText value="#{countriesController.selected.languages}" title="#{bundleAccouts.ViewCountriesTitle_languages}"/>
+                        <h:outputText value="#{bundleCountries.ViewCountriesLabel_countryCode}"/>
+                        <h:outputText value="#{countriesController.selected.countryCode}" title="#{bundleCountries.ViewCountriesTitle_countryCode}"/>
+                        <h:outputText value="#{bundleCountries.ViewCountriesLabel_countryName}"/>
+                        <h:outputText value="#{countriesController.selected.countryName}" title="#{bundleCountries.ViewCountriesTitle_countryName}"/>
+                        <h:outputText value="#{bundleCountries.ViewCountriesLabel_currencyCode}"/>
+                        <h:outputText value="#{countriesController.selected.currencyCode}" title="#{bundleCountries.ViewCountriesTitle_currencyCode}"/>
+                        <h:outputText value="#{bundleCountries.ViewCountriesLabel_currencyName}"/>
+                        <h:outputText value="#{countriesController.selected.currencyName}" title="#{bundleCountries.ViewCountriesTitle_currencyName}"/>
+                        <h:outputText value="#{bundleCountries.ViewCountriesLabel_isoNumeric}"/>
+                        <h:outputText value="#{countriesController.selected.isoNumeric}" title="#{bundleCountries.ViewCountriesTitle_isoNumeric}"/>
+                        <h:outputText value="#{bundleCountries.ViewCountriesLabel_languages}"/>
+                        <h:outputText value="#{countriesController.selected.languages}" title="#{bundleCountries.ViewCountriesTitle_languages}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundleAccouts.Close}" onclick="CountriesViewDialog.hide()"/>
+                    <p:commandButton value="#{bundleCountries.Close}" onclick="CountriesViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

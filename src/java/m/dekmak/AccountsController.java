@@ -115,6 +115,10 @@ public class AccountsController implements Serializable {
         return getFacade().findAll();
     }
     
+    public List<Accounts> getExpenseItems() {
+        return getFacade().getAccountsExpenses();
+    }
+    
     public List<Accounts> getPaidThroughItems() {
         return getFacade().getAccountsAssets();
     }

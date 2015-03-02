@@ -55,6 +55,12 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundleJournals.ListJournalsTitle_createdBy}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdBy.name}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundleJournals.ListJournalsTitle_description}"/>
                             </f:facet>
                             <h:outputText value="#{item.description}"/>

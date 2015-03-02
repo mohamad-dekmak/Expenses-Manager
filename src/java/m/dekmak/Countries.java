@@ -6,9 +6,7 @@
 package m.dekmak;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,12 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -68,8 +64,6 @@ public class Countries implements Serializable {
     @Size(max = 30)
     @Column(name = "languages")
     private String languages;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "currencyId")
-    private Collection<Accounts> accountsCollection;
 
     public Countries() {
     }
@@ -138,15 +132,6 @@ public class Countries implements Serializable {
 
     public void setLanguages(String languages) {
         this.languages = languages;
-    }
-
-    @XmlTransient
-    public Collection<Accounts> getAccountsCollection() {
-        return accountsCollection;
-    }
-
-    public void setAccountsCollection(Collection<Accounts> accountsCollection) {
-        this.accountsCollection = accountsCollection;
     }
 
     @Override

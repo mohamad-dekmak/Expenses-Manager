@@ -16,7 +16,7 @@
                         <p:inputText id="name" value="#{expenseCategoriesController.selected.name}" title="#{bundleExpensesCategories.CreateExpenseCategoriesTitle_name}" required="true" requiredMessage="#{bundleExpensesCategories.CreateExpenseCategoriesRequiredMessage_name}"/>
                         <p:outputLabel value="#{bundleExpensesCategories.CreateExpenseCategoriesLabel_accountId}" for="accountId" />
                         <p:selectOneMenu id="accountId" value="#{expenseCategoriesController.selected.accountId}" >
-                            <f:selectItems value="#{accountsController.itemsAvailableSelectOne}"
+                            <f:selectItems value="#{accountsController.expenseItems}"
                                            var="accountIdItem"
                                            itemValue="#{accountIdItem}"/>
                         </p:selectOneMenu>

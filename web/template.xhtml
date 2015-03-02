@@ -21,19 +21,21 @@
                     <p:menubar>
                         <p:menuitem value="#{bundle.Home}" outcome="/auth/index" icon="ui-icon-home"/>
                         <p:menuitem value="Manage Users" outcome="/users/List.xhtml" />
-                        <p:submenu label="Expenses">
-                            <p:menuitem value="Manage Expenses" outcome="/expenses/List.xhtml" />
-                            <p:menuitem value="Expenses Categories" outcome="/expenseCategories/List.xhtml" />
-                        </p:submenu>
                         <p:submenu label="Accounts">
                             <p:menuitem value="Manage Accounts" outcome="/accounts/List.xhtml" />
                             <p:menuitem value="Account Types" outcome="/accountTypes/List.xhtml" />
                         </p:submenu>
-                        <p:menuitem value="Journals" outcome="/journals/List.xhtml" />
                         <p:menuitem value="Currencies" outcome="/countries/List.xhtml" />
+                        <p:submenu label="Expenses">
+                            <p:menuitem value="Manage Expenses" outcome="/expenses/List.xhtml" />
+                            <p:menuitem value="Expenses Categories" outcome="/expenseCategories/List.xhtml" />
+                        </p:submenu>
+                        <p:menuitem value="Journals" outcome="/journals/List.xhtml" />
                         <p:submenu label="Reports">
-                            <p:menuitem value="Expenses per Category" outcome="/expenses/List.xhtml" />
-                            <p:menuitem value="Expenses per User" outcome="/expenses/List.xhtml" />
+                            <p:menuitem value="Chart of Accounts" outcome="/reports/chart_of_accounts/view.xhtml" />
+                            <p:menuitem value="Account Statement" outcome="/reports/account_statement/view.xhtml" />
+                            <p:menuitem value="Statement of Expenses" outcome="/reports/statement_of_expenses/view.xhtml" />
+                            <p:menuitem value="Statement of Expenses per User" outcome="/reports/statement_of_expenses_per_user/view.xhtml" />
                         </p:submenu>
                         <p:menuitem value="Logout" outcome="/logout.jsp" />
                     </p:menubar>
