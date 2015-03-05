@@ -22,22 +22,15 @@
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
     <security-constraint>
-        <display-name>Admin Pages</display-name>
+        <display-name>User Pages</display-name>
         <web-resource-collection>
-            <web-resource-name>Protected Admin Area</web-resource-name>
+            <web-resource-name>User Area 1</web-resource-name>
             <description/>
             <url-pattern>/faces/auth/*</url-pattern>
-            <http-method>GET</http-method>
-            <http-method>PUT</http-method>
-            <http-method>HEAD</http-method>
-            <http-method>POST</http-method>
-            <http-method>OPTIONS</http-method>
-            <http-method>TRACE</http-method>
-            <http-method>DELETE</http-method>
         </web-resource-collection>
         <auth-constraint>
             <description/>
-            <role-name>admin</role-name>
+            <role-name>user</role-name>
         </auth-constraint>
         <user-data-constraint>
             <description/>
@@ -62,6 +55,57 @@
             <transport-guarantee>NONE</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+    <security-constraint>
+        <display-name>Admin Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>Admin Area 1</web-resource-name>
+            <description/>
+            <url-pattern>/faces/users/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>Admin Area 2</web-resource-name>
+            <description/>
+            <url-pattern>/faces/accounts/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>Admin Area 3</web-resource-name>
+            <description/>
+            <url-pattern>/faces/journals/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>Admin Area 4</web-resource-name>
+            <description/>
+            <url-pattern>/faces/accountTypes/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>Admin Area 5</web-resource-name>
+            <description/>
+            <url-pattern>/faces/countries/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>Admin Area 6</web-resource-name>
+            <description/>
+            <url-pattern>/faces/reports/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>Admin Area 7</web-resource-name>
+            <description/>
+            <url-pattern>/faces/expenseCategories/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>Admin Area 8</web-resource-name>
+            <description/>
+            <url-pattern>/faces/auth/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>JDBCRealm</realm-name>
@@ -74,4 +118,12 @@
         <error-code>403</error-code>
         <location>/faces/auth/error403.xhtml</location>
     </error-page>
+    <security-role>
+        <description/>
+        <role-name>admin</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>user</role-name>
+    </security-role>
 </web-app>
